@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/WebsiteCode/index.html" }
+  ]
+}
