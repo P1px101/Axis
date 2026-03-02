@@ -20,21 +20,26 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setClearColor(0x000000, 0);
 container.appendChild(renderer.domElement);
 
-// Strong Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+// DIMMER Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
 directionalLight.position.set(500, 500, 500);
 scene.add(directionalLight);
 
-const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.0);
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
 directionalLight2.position.set(-500, 500, -500);
 scene.add(directionalLight2);
 
-const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.8);
+const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.2);
 directionalLight3.position.set(0, -500, 0);
 scene.add(directionalLight3);
+
+// Subtle rim light for edge definition
+const rimLight = new THREE.DirectionalLight(0x4466ff, 0.3);
+rimLight.position.set(-200, 0, -200);
+scene.add(rimLight);
 
 // Mouse tracking
 let mouseX = 0;
@@ -51,7 +56,7 @@ container.appendChild(loadingDiv);
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/Arrow V2.fbx', // <-- CHANGE THIS TO YOUR MODEL NAME
+    'Models/Arrow V2.fbx',
     function (object) {
         model = object;
         
@@ -69,22 +74,23 @@ loader.load(
         model.position.y = -center.y;
         model.position.z = -center.z;
         
-        // Position camera based on model size
+        // Position camera based on model size - CLOSER for bigger appearance
         const maxDim = Math.max(size.x, size.y, size.z);
-        camera.position.z = maxDim * 1.5;
+        camera.position.z = maxDim * 1.0; // Closer camera = bigger model
         
         // Update light positions based on model size
         directionalLight.position.set(maxDim, maxDim, maxDim);
         directionalLight2.position.set(-maxDim, maxDim, -maxDim);
         directionalLight3.position.set(0, -maxDim, 0);
+        rimLight.position.set(-maxDim, 0, -maxDim);
         
-        // Force visible materials
+        // Slightly darker material
         model.traverse(function (child) {
             if (child.isMesh) {
                 child.material = new THREE.MeshStandardMaterial({
-                    color: 0xFFFFFF,
-                    metalness: 0.5,
-                    roughness: 0.5,
+                    color: 0xcccccc,
+                    metalness: 0.6,
+                    roughness: 0.4,
                     side: THREE.DoubleSide
                 });
             }
