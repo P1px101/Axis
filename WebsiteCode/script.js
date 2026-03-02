@@ -51,7 +51,7 @@ container.appendChild(loadingDiv);
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/A with arrows V4.fbx', // <-- CHANGE THIS TO YOUR MODEL NAME
+    'Models/A arrowss.fbx', // <-- CHANGE THIS TO YOUR MODEL NAME
     function (object) {
         model = object;
         
