@@ -51,7 +51,7 @@ container.appendChild(loadingDiv);
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/A with arrows V2.fbx', // <-- CHANGE THIS TO YOUR MODEL NAME
+    'Models/A with arrows V4.fbx', // <-- CHANGE THIS TO YOUR MODEL NAME
     function (object) {
         model = object;
         
@@ -82,9 +82,9 @@ loader.load(
         model.traverse(function (child) {
             if (child.isMesh) {
                 child.material = new THREE.MeshStandardMaterial({
-                    color: 0x6699ff,
-                    metalness: 0.4,
-                    roughness: 0.5,
+                    color: 0xFFFFFF,
+                    metalness: 0,
+                    roughness: 0,
                     side: THREE.DoubleSide
                 });
             }
