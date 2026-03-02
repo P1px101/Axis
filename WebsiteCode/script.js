@@ -21,28 +21,28 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setClearColor(0x000000, 0);
 container.appendChild(renderer.domElement);
 
-// Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+// STRONGER Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
 directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
 
-const directionalLight2 = new THREE.DirectionalLight(0x4488ff, 0.5);
-directionalLight2.position.set(-5, -5, -5);
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.0);
+directionalLight2.position.set(-5, 5, -5);
 scene.add(directionalLight2);
 
-// Mouse tracking variables
+const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.8);
+directionalLight3.position.set(0, -5, 0);
+scene.add(directionalLight3);
+
+// Mouse tracking
 let mouseX = 0;
 let mouseY = 0;
 let targetRotationX = 0;
 let targetRotationY = 0;
-
-// Model variable
 let model = null;
-
-// Base rotation (continuous spin)
 let baseRotationY = 0;
 
 // Loading indicator
@@ -55,32 +55,70 @@ container.appendChild(loadingDiv);
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/A with arrows V3.fbx', // Change this to your model path
+    'Models/A with arrows V3.fbx', // <-- CHANGE THIS TO YOUR MODEL NAME
     function (object) {
         model = object;
+        
+        // Log model info for debugging
+        console.log('Model loaded:', object);
+        console.log('Children:', object.children);
         
         // Center and scale the model
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         
+        console.log('Model size:', size);
+        console.log('Model center:', center);
+        
         // Center the model
         model.position.sub(center);
         
         // Scale to fit
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 2 / maxDim;
+        const scale = 2.5 / maxDim;
         model.scale.setScalar(scale);
         
-        scene.add(model);
+        // ================================
+        // FORCE VISIBLE MATERIALS
+        // ================================
+        model.traverse(function (child) {
+            if (child.isMesh) {
+                console.log('Found mesh:', child.name);
+                
+                // Option 1: Make existing material brighter
+                if (child.material) {
+                    child.material.transparent = false;
+                    child.material.opacity = 1;
+                    child.material.side = THREE.DoubleSide;
+                    
+                    // If material is too dark, brighten it
+                    if (child.material.color) {
+                        const color = child.material.color;
+                        if (color.r < 0.1 && color.g < 0.1 && color.b < 0.1) {
+                            child.material.color.setHex(0x888888);
+                        }
+                    }
+                }
+                
+                // Option 2: Replace with visible material (uncomment if needed)
+                /*
+                child.material = new THREE.MeshStandardMaterial({
+                    color: 0x4488ff,
+                    metalness: 0.3,
+                    roughness: 0.6,
+                    side: THREE.DoubleSide
+                });
+                */
+            }
+        });
         
-        // Remove loading indicator
+        scene.add(model);
         loadingDiv.remove();
         
-        console.log('Model loaded successfully!');
+        console.log('Model added to scene!');
     },
     function (xhr) {
-        // Progress
         const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
         loadingDiv.textContent = `Loading... ${percent}%`;
     },
@@ -92,7 +130,6 @@ loader.load(
 
 // Mouse move event
 document.addEventListener('mousemove', (event) => {
-    // Normalize mouse position to -1 to 1
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     mouseY = (event.clientY / window.innerHeight) * 2 - 1;
 });
@@ -109,14 +146,11 @@ function animate() {
     requestAnimationFrame(animate);
     
     if (model) {
-        // Continuous slow rotation
         baseRotationY += 0.005;
         
-        // Target rotation based on mouse (subtle effect)
-        targetRotationX = mouseY * 0.3; // Tilt up/down
-        targetRotationY = mouseX * 0.5; // Tilt left/right
+        targetRotationX = mouseY * 0.3;
+        targetRotationY = mouseX * 0.5;
         
-        // Smooth interpolation (easing)
         model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
         model.rotation.y += (baseRotationY + targetRotationY - model.rotation.y) * 0.05;
     }
