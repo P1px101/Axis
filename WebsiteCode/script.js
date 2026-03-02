@@ -55,7 +55,7 @@ container.appendChild(loadingDiv);
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/A with arrows V2.fbx', // Change this to your model path
+    'Models/A with arrows V3.fbx', // Change this to your model path
     function (object) {
         model = object;
         
