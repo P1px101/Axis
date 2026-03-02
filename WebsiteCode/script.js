@@ -40,7 +40,6 @@ scene.add(directionalLight3);
 let mouseX = 0;
 let mouseY = 0;
 let model = null;
-let baseRotationY = 0;
 
 // Loading indicator
 const loadingDiv = document.createElement('div');
@@ -64,17 +63,14 @@ loader.load(
         const size = box.getSize(new THREE.Vector3());
         
         console.log('Model size:', size);
-        console.log('Model center:', center);
         
         // Center the model at origin
         model.position.x = -center.x;
         model.position.y = -center.y;
         model.position.z = -center.z;
         
-        // DON'T scale the model - instead move camera to fit
-        const maxDim = Math.max(size.x, size.y, size.z);
-        
         // Position camera based on model size
+        const maxDim = Math.max(size.x, size.y, size.z);
         camera.position.z = maxDim * 1.5;
         
         // Update light positions based on model size
@@ -82,14 +78,9 @@ loader.load(
         directionalLight2.position.set(-maxDim, maxDim, -maxDim);
         directionalLight3.position.set(0, -maxDim, 0);
         
-        console.log('Camera distance:', camera.position.z);
-        
         // Force visible materials
         model.traverse(function (child) {
             if (child.isMesh) {
-                console.log('Mesh found:', child.name);
-                
-                // Force bright visible material
                 child.material = new THREE.MeshStandardMaterial({
                     color: 0x6699ff,
                     metalness: 0.4,
@@ -102,7 +93,7 @@ loader.load(
         scene.add(model);
         loadingDiv.remove();
         
-        console.log('Model added! Camera at z:', camera.position.z);
+        console.log('Model added!');
     },
     function (xhr) {
         if (xhr.total > 0) {
@@ -128,3 +119,22 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
+
+// Animation loop - ONLY mouse movement
+function animate() {
+    requestAnimationFrame(animate);
+    
+    if (model) {
+        // Only rotate based on mouse position
+        const targetRotationX = mouseY * 0.3;
+        const targetRotationY = mouseX * 0.5;
+        
+        // Smooth easing
+        model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
+        model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
+    }
+    
+    renderer.render(scene, camera);
+}
+
+animate();
