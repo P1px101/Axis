@@ -35,27 +35,6 @@ body::before {
     pointer-events: none;
     z-index: 50;
     background: 
-        /* Bottom to top - very smooth */
-        linear-gradient(
-            to top,
-            rgba(10, 10, 10, 1) 0%,
-            rgba(10, 10, 10, 0.98) 5%,
-            rgba(10, 10, 10, 0.95) 10%,
-            rgba(10, 10, 10, 0.9) 15%,
-            rgba(10, 10, 10, 0.85) 20%,
-            rgba(10, 10, 10, 0.75) 25%,
-            rgba(10, 10, 10, 0.65) 30%,
-            rgba(10, 10, 10, 0.55) 35%,
-            rgba(10, 10, 10, 0.45) 40%,
-            rgba(10, 10, 10, 0.35) 45%,
-            rgba(10, 10, 10, 0.25) 50%,
-            rgba(10, 10, 10, 0.18) 55%,
-            rgba(10, 10, 10, 0.12) 60%,
-            rgba(10, 10, 10, 0.08) 65%,
-            rgba(10, 10, 10, 0.04) 70%,
-            rgba(10, 10, 10, 0.02) 75%,
-            transparent 80%
-        ),
         /* Top fade - smooth */
         linear-gradient(
             to bottom,
@@ -210,11 +189,34 @@ body::before {
     align-items: center;
     justify-content: center;
     z-index: 60;
+    background-color: #0a0a0a;
+    padding-top: 100px;
+}
+
+/* Smooth transition gradient BEFORE scroll section */
+.scroll-section::before {
+    content: '';
+    position: absolute;
+    top: -300px;
+    left: 0;
+    width: 100%;
+    height: 350px;
     background: linear-gradient(
         to bottom,
-        #0a0a0a 0%,
+        transparent 0%,
+        rgba(10, 10, 10, 0.02) 10%,
+        rgba(10, 10, 10, 0.05) 20%,
+        rgba(10, 10, 10, 0.1) 30%,
+        rgba(10, 10, 10, 0.2) 40%,
+        rgba(10, 10, 10, 0.35) 50%,
+        rgba(10, 10, 10, 0.5) 60%,
+        rgba(10, 10, 10, 0.7) 70%,
+        rgba(10, 10, 10, 0.85) 80%,
+        rgba(10, 10, 10, 0.95) 90%,
         #0a0a0a 100%
     );
+    pointer-events: none;
+    z-index: 61;
 }
 
 .scroll-section h2 {
