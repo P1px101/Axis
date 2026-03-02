@@ -83,8 +83,8 @@ loader.load(
             if (child.isMesh) {
                 child.material = new THREE.MeshStandardMaterial({
                     color: 0xFFFFFF,
-                    metalness: 0,
-                    roughness: 0,
+                    metalness: 0.5,
+                    roughness: 0.5,
                     side: THREE.DoubleSide
                 });
             }
