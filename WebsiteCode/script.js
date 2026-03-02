@@ -29,99 +29,95 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(5, 5, 5);
 scene.add(directionalLight);
 
-const directionalLight2 = new THREE.DirectionalLight(0x4488ff, 0.5);
-directionalLight2.position.set(-5, -5, -5);
-scene.add(directionalLight2);
-
-// Mouse tracking variables
+// Mouse tracking
 let mouseX = 0;
 let mouseY = 0;
-let targetRotationX = 0;
-let targetRotationY = 0;
-
-// Model variable
-let model = null;
-
-// Base rotation (continuous spin)
 let baseRotationY = 0;
 
-// Loading indicator
-const loadingDiv = document.createElement('div');
-loadingDiv.className = 'loading';
-loadingDiv.textContent = 'Loading model...';
-container.appendChild(loadingDiv);
+// ===========================================
+// TEST CUBE (to verify Three.js is working)
+// ===========================================
+const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+const material = new THREE.MeshStandardMaterial({ 
+    color: 0x4488ff,
+    metalness: 0.3,
+    roughness: 0.4
+});
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
 
-// Load FBX Model
+console.log("Test cube added! If you see a blue cube, Three.js is working.");
+
+// ===========================================
+// Uncomment below to load your FBX model
+// ===========================================
+
+/*
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/A with arrows.fbx', // Change this to your model path
+    'Models/your-model.fbx',  // <-- CHANGE THIS TO YOUR MODEL NAME
     function (object) {
-        model = object;
+        console.log('Model loaded!', object);
         
-        // Center and scale the model
-        const box = new THREE.Box3().setFromObject(model);
+        // Remove test cube
+        scene.remove(cube);
+        
+        // Add model
+        const box = new THREE.Box3().setFromObject(object);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         
-        // Center the model
-        model.position.sub(center);
+        object.position.sub(center);
         
-        // Scale to fit
         const maxDim = Math.max(size.x, size.y, size.z);
         const scale = 2 / maxDim;
-        model.scale.setScalar(scale);
+        object.scale.setScalar(scale);
         
-        scene.add(model);
+        scene.add(object);
         
-        // Remove loading indicator
-        loadingDiv.remove();
-        
-        console.log('Model loaded successfully!');
+        // Store reference for animation
+        window.loadedModel = object;
     },
     function (xhr) {
-        // Progress
-        const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
-        loadingDiv.textContent = `Loading... ${percent}%`;
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     },
     function (error) {
-        console.error('Error loading model:', error);
-        loadingDiv.textContent = 'Error loading model';
+        console.error('ERROR loading model:', error);
     }
 );
+*/
 
 // Mouse move event
 document.addEventListener('mousemove', (event) => {
-    // Normalize mouse position to -1 to 1
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     mouseY = (event.clientY / window.innerHeight) * 2 - 1;
 });
 
-// Handle window resize
+// Handle resize
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-// Animation loop
+// Animation
 function animate() {
     requestAnimationFrame(animate);
     
-    if (model) {
-        // Continuous slow rotation
-        baseRotationY += 0.005;
-        
-        // Target rotation based on mouse (subtle effect)
-        targetRotationX = mouseY * 0.3; // Tilt up/down
-        targetRotationY = mouseX * 0.5; // Tilt left/right
-        
-        // Smooth interpolation (easing)
-        model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
-        model.rotation.y += (baseRotationY + targetRotationY - model.rotation.y) * 0.05;
+    baseRotationY += 0.005;
+    
+    // Animate cube OR loaded model
+    const target = window.loadedModel || cube;
+    
+    if (target) {
+        target.rotation.x += (mouseY * 0.3 - target.rotation.x) * 0.05;
+        target.rotation.y += (baseRotationY + mouseX * 0.5 - target.rotation.y) * 0.05;
     }
     
     renderer.render(scene, camera);
 }
 
 animate();
+
+console.log("Animation started!");
