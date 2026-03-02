@@ -2,14 +2,14 @@
 const container = document.getElementById('model-container');
 const scene = new THREE.Scene();
 
-// Camera
+// Camera - moved MUCH further back
 const camera = new THREE.PerspectiveCamera(
     45,
     container.clientWidth / container.clientHeight,
     0.1,
-    1000
+    5000  // Increased far plane
 );
-camera.position.z = 5;
+camera.position.z = 200;  // Much further back!
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({ 
@@ -21,27 +21,25 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setClearColor(0x000000, 0);
 container.appendChild(renderer.domElement);
 
-// STRONGER Lighting
+// Strong Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-directionalLight.position.set(5, 5, 5);
+directionalLight.position.set(100, 100, 100);
 scene.add(directionalLight);
 
 const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.0);
-directionalLight2.position.set(-5, 5, -5);
+directionalLight2.position.set(-100, 100, -100);
 scene.add(directionalLight2);
 
 const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.8);
-directionalLight3.position.set(0, -5, 0);
+directionalLight3.position.set(0, -100, 0);
 scene.add(directionalLight3);
 
 // Mouse tracking
 let mouseX = 0;
 let mouseY = 0;
-let targetRotationX = 0;
-let targetRotationY = 0;
 let model = null;
 let baseRotationY = 0;
 
@@ -59,49 +57,46 @@ loader.load(
     function (object) {
         model = object;
         
-        // Log model info for debugging
         console.log('Model loaded:', object);
-        console.log('Children:', object.children);
         
-        // Center and scale the model
+        // Get model size
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         
-        console.log('Model size:', size);
-        console.log('Model center:', center);
+        console.log('Original size:', size);
         
         // Center the model
-        model.position.sub(center);
+        model.position.x = -center.x;
+        model.position.y = -center.y;
+        model.position.z = -center.z;
         
-        // Scale to fit
+        // Scale down to reasonable size (target size of ~3 units)
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 2.5 / maxDim;
-        model.scale.setScalar(scale);
+        const desiredSize = 3;
+        const scale = desiredSize / maxDim;
         
-        // ================================
-        // FORCE VISIBLE MATERIALS
-        // ================================
+        model.scale.set(scale, scale, scale);
+        
+        console.log('Scale applied:', scale);
+        
+        // Reset camera for scaled model
+        camera.position.z = 8;
+        
+        // Force visible materials
         model.traverse(function (child) {
             if (child.isMesh) {
-                console.log('Found mesh:', child.name);
+                console.log('Mesh found:', child.name);
                 
-                // Option 1: Make existing material brighter
+                // Make sure materials are visible
                 if (child.material) {
+                    child.material.side = THREE.DoubleSide;
                     child.material.transparent = false;
                     child.material.opacity = 1;
-                    child.material.side = THREE.DoubleSide;
-                    
-                    // If material is too dark, brighten it
-                    if (child.material.color) {
-                        const color = child.material.color;
-                        if (color.r < 0.1 && color.g < 0.1 && color.b < 0.1) {
-                            child.material.color.setHex(0x888888);
-                        }
-                    }
+                    child.material.needsUpdate = true;
                 }
                 
-                // Option 2: Replace with visible material (uncomment if needed)
+                // Uncomment below to force a bright material:
                 /*
                 child.material = new THREE.MeshStandardMaterial({
                     color: 0x4488ff,
@@ -117,10 +112,14 @@ loader.load(
         loadingDiv.remove();
         
         console.log('Model added to scene!');
+        console.log('Final model position:', model.position);
+        console.log('Final model scale:', model.scale);
     },
     function (xhr) {
-        const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
-        loadingDiv.textContent = `Loading... ${percent}%`;
+        if (xhr.total > 0) {
+            const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
+            loadingDiv.textContent = `Loading... ${percent}%`;
+        }
     },
     function (error) {
         console.error('Error loading model:', error);
@@ -146,13 +145,16 @@ function animate() {
     requestAnimationFrame(animate);
     
     if (model) {
+        // Slow continuous rotation
         baseRotationY += 0.005;
         
-        targetRotationX = mouseY * 0.3;
-        targetRotationY = mouseX * 0.5;
+        // Mouse influence (subtle)
+        const targetRotationX = mouseY * 0.3;
+        const targetRotationY = baseRotationY + mouseX * 0.5;
         
+        // Smooth easing
         model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
-        model.rotation.y += (baseRotationY + targetRotationY - model.rotation.y) * 0.05;
+        model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
     }
     
     renderer.render(scene, camera);
