@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/WebsiteCode/index.html" }
+    { "source": "/", "destination": "/WebsiteCode/index.html" },
+    { "source": "/", "destination": "/WebsiteCode/style.css" },
+    { "source": "/", "destination": "/WebsiteCode/script.js" }
   ]
 }

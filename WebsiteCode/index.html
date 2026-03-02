@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axis</title>
     <link rel="icon" type="image/png" href="Icons/AXIS 32 nice.png">
-    <link rel="stylesheet" href="WebsiteCode/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -18,9 +18,20 @@
     </nav>
 
     <main class="content">
-        <h1>Welcome to Axis</h1>
-        <p>Your next-generation platform</p>
+        <div id="model-container"></div>
+        <div class="text-content">
+            <h1>Welcome to Axis</h1>
+            <p>Your next-generation platform</p>
+        </div>
     </main>
 
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- FBX Loader -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+    <!-- Fflate (required for FBX compression) -->
+    <script src="https://cdn.jsdelivr.net/npm/fflate@0.6.9/umd/index.min.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
