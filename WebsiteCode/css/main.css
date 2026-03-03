@@ -1,3 +1,7 @@
+/* ================================
+   BASE STYLES & RESET
+   ================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +19,10 @@ body {
     overflow-x: hidden;
 }
 
-/* Subtle gradient background */
+/* ================================
+   BACKGROUND
+   ================================ */
+
 body::before {
     content: '';
     position: fixed;
@@ -29,7 +36,10 @@ body::before {
     z-index: -1;
 }
 
-/* Gradient Overlay - EXTENDED HIGHER */
+/* ================================
+   GRADIENT OVERLAY
+   ================================ */
+
 .gradient-overlay {
     position: fixed;
     top: 0;
@@ -39,7 +49,7 @@ body::before {
     pointer-events: none;
     z-index: 50;
     background: 
-        /* Bottom gradient - EXTENDED HIGHER */
+        /* Bottom gradient */
         linear-gradient(
             to top,
             rgba(10, 10, 10, 1) 0%,
@@ -80,79 +90,10 @@ body::before {
         );
 }
 
-/* Navigation Dock */
-.dock {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 500px;
-    padding: 15px 25px;
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    z-index: 100;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+/* ================================
+   MAIN CONTENT SECTION
+   ================================ */
 
-/* Logo */
-.logo {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-/* Navigation Links Container */
-.nav-links {
-    display: flex;
-    gap: 8px;
-    position: relative;
-}
-
-/* Sliding Indicator */
-.nav-indicator {
-    position: absolute;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 25px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.4s cubic-bezier(0.68, -0.15, 0.32, 1.15);
-    z-index: 0;
-}
-
-/* Navigation Buttons */
-.nav-btn {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    background: transparent;
-    position: relative;
-    z-index: 1;
-}
-
-.nav-btn:hover {
-    color: #ffffff;
-}
-
-.nav-btn.active {
-    color: #ffffff;
-}
-
-/* Main Content */
 .content {
     position: relative;
     width: 100%;
@@ -164,21 +105,10 @@ body::before {
     padding-top: 80px;
 }
 
-/* 3D Model Container */
-#model-container {
-    width: 60%;
-    height: 80vh;
-    position: relative;
-    margin-left: -5%;
-}
+/* ================================
+   TEXT CONTENT
+   ================================ */
 
-#model-container canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-/* Text Content - RIGHT SIDE */
 .text-content {
     position: absolute;
     right: 10%;
@@ -187,7 +117,6 @@ body::before {
     text-align: right;
 }
 
-/* BIGGER TEXT */
 .text-content h1 {
     font-size: 6rem;
     font-weight: 700;
@@ -196,7 +125,6 @@ body::before {
     line-height: 1.1;
 }
 
-/* Silver gradient on characters */
 .text-content h1 .char {
     background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
     -webkit-background-clip: text;
@@ -211,42 +139,32 @@ body::before {
 }
 
 /* ================================
-   SPLIT TEXT ANIMATION STYLES
+   SPLIT TEXT ANIMATION
    ================================ */
 
 .split-text {
     overflow: visible;
 }
 
-/* Individual characters */
 .char {
     display: inline-block;
     will-change: transform, opacity;
 }
 
-/* Individual words */
 .word {
     display: inline-block;
     will-change: transform, opacity;
     margin-right: 0.25em;
 }
 
-/* Last word shouldn't have margin */
 .word:last-child {
     margin-right: 0;
 }
 
-/* Loading indicator */
-.loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
-}
+/* ================================
+   SCROLL SECTION
+   ================================ */
 
-/* Scroll content section */
 .scroll-section {
     position: relative;
     width: 100%;
@@ -284,21 +202,17 @@ body::before {
     z-index: 61;
 }
 
-/* BIGGER SCROLL SECTION TEXT */
 .scroll-section h2 {
     color: white;
     font-size: 4rem;
     font-weight: 700;
 }
 
-/* Responsive */
+/* ================================
+   RESPONSIVE
+   ================================ */
+
 @media (max-width: 900px) {
-    #model-container {
-        width: 100%;
-        height: 50vh;
-        margin-left: 0;
-    }
-    
     .text-content {
         position: relative;
         right: auto;
@@ -322,20 +236,6 @@ body::before {
 }
 
 @media (max-width: 500px) {
-    .dock {
-        width: 95%;
-        padding: 12px 20px;
-    }
-    
-    .logo {
-        font-size: 1.2rem;
-    }
-    
-    .nav-btn {
-        padding: 8px 15px;
-        font-size: 0.85rem;
-    }
-    
     .text-content h1 {
         font-size: 2.5rem;
     }
