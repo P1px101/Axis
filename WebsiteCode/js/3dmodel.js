@@ -75,7 +75,7 @@ container.appendChild(loadingDiv);
 const loader = new THREE.FBXLoader();
 
 loader.load(
-    'Models/Arrow V2.fbx',
+    'WebsiteCode/Models/Arrow V2.fbx',  // UPDATED PATH
     function (object) {
         model = object;
         
