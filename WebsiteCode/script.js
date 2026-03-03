@@ -1,4 +1,110 @@
-// Scene setup
+// ================================
+// GSAP SPLIT TEXT ANIMATION
+// ================================
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Split text into characters or words
+function splitTextIntoElements(element, type = 'chars') {
+    const text = element.textContent;
+    element.textContent = '';
+    
+    if (type === 'chars') {
+        // Split into characters
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            if (char === ' ') {
+                const space = document.createElement('span');
+                space.className = 'char-space';
+                space.innerHTML = '&nbsp;';
+                element.appendChild(space);
+            } else {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char;
+                element.appendChild(span);
+            }
+        }
+        return element.querySelectorAll('.char');
+    } else if (type === 'words') {
+        // Split into words
+        const words = text.split(' ');
+        words.forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = word;
+            element.appendChild(span);
+        });
+        return element.querySelectorAll('.word');
+    }
+}
+
+// Initialize split text animations
+function initSplitTextAnimations() {
+    const splitElements = document.querySelectorAll('.split-text');
+    
+    splitElements.forEach((element, index) => {
+        const animationType = element.dataset.animation || 'chars';
+        const targets = splitTextIntoElements(element, animationType);
+        
+        // Check if element is in the first viewport (animate immediately)
+        const rect = element.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight;
+        
+        if (isInView) {
+            // Animate immediately with a small delay based on index
+            gsap.fromTo(targets,
+                {
+                    opacity: 0,
+                    y: 40,
+                    rotateX: -90
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    stagger: 0.03,
+                    delay: 0.5 + (index * 0.2)
+                }
+            );
+        } else {
+            // Animate on scroll
+            gsap.fromTo(targets,
+                {
+                    opacity: 0,
+                    y: 40,
+                    rotateX: -90
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    stagger: 0.03,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        once: true
+                    }
+                }
+            );
+        }
+    });
+}
+
+// Wait for fonts to load before splitting text
+document.fonts.ready.then(() => {
+    initSplitTextAnimations();
+});
+
+
+// ================================
+// THREE.JS 3D MODEL
+// ================================
+
 const container = document.getElementById('model-container');
 const scene = new THREE.Scene();
 
@@ -36,7 +142,6 @@ const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.2);
 directionalLight3.position.set(0, -500, 0);
 scene.add(directionalLight3);
 
-// Subtle rim light for edge definition
 const rimLight = new THREE.DirectionalLight(0x4466ff, 0.3);
 rimLight.position.set(-200, 0, -200);
 scene.add(rimLight);
@@ -74,9 +179,9 @@ loader.load(
         model.position.y = -center.y;
         model.position.z = -center.z;
         
-        // Position camera based on model size - CLOSER for bigger appearance
+        // Position camera based on model size
         const maxDim = Math.max(size.x, size.y, size.z);
-        camera.position.z = maxDim * 1.0; // Closer camera = bigger model
+        camera.position.z = maxDim * 1.0;
         
         // Update light positions based on model size
         directionalLight.position.set(maxDim, maxDim, maxDim);
@@ -131,11 +236,9 @@ function animate() {
     requestAnimationFrame(animate);
     
     if (model) {
-        // Only rotate based on mouse position
         const targetRotationX = mouseY * 0.3;
         const targetRotationY = mouseX * 0.5;
         
-        // Smooth easing
         model.rotation.x += (targetRotationX - model.rotation.x) * 0.05;
         model.rotation.y += (targetRotationY - model.rotation.y) * 0.05;
     }
