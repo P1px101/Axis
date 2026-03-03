@@ -12,15 +12,16 @@
     <nav class="dock">
         <div class="logo">Axis</div>
         <div class="nav-links">
-            <a href="#" class="nav-btn active">Home</a>
-            <a href="#" class="nav-btn">Releases</a>
+            <div class="nav-indicator"></div>
+            <a href="#home" class="nav-btn active" data-section="home">Home</a>
+            <a href="#releases" class="nav-btn" data-section="releases">Releases</a>
         </div>
     </nav>
 
     <!-- Gradient Overlay -->
     <div class="gradient-overlay"></div>
 
-    <main class="content">
+    <main id="home" class="content">
         <div id="model-container"></div>
         <div class="text-content">
             <h1 class="split-text" data-animation="chars">Welcome to Axis</h1>
@@ -29,8 +30,8 @@
     </main>
 
     <!-- Scroll section -->
-    <section class="scroll-section">
-        <h2 class="split-text" data-animation="chars">Discover More</h2>
+    <section id="releases" class="scroll-section">
+        <h2 class="split-text" data-animation="chars">Releases</h2>
     </section>
 
     <!-- Three.js Library -->

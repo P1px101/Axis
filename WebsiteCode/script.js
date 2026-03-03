@@ -1,4 +1,99 @@
 // ================================
+// NAVIGATION & SLIDING INDICATOR
+// ================================
+
+const navBtns = document.querySelectorAll('.nav-btn');
+const navIndicator = document.querySelector('.nav-indicator');
+const navLinks = document.querySelector('.nav-links');
+
+// Position the indicator on the active button
+function moveIndicator(button) {
+    const btnRect = button.getBoundingClientRect();
+    const navRect = navLinks.getBoundingClientRect();
+    
+    const left = btnRect.left - navRect.left;
+    const width = btnRect.width;
+    
+    navIndicator.style.left = left + 'px';
+    navIndicator.style.width = width + 'px';
+}
+
+// Initialize indicator position
+function initIndicator() {
+    const activeBtn = document.querySelector('.nav-btn.active');
+    if (activeBtn) {
+        // Set initial position without animation
+        navIndicator.style.transition = 'none';
+        moveIndicator(activeBtn);
+        // Re-enable animation after a frame
+        setTimeout(() => {
+            navIndicator.style.transition = 'all 0.4s cubic-bezier(0.68, -0.15, 0.32, 1.15)';
+        }, 50);
+    }
+}
+
+// Handle navigation clicks
+navBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active from all buttons
+        navBtns.forEach(b => b.classList.remove('active'));
+        
+        // Add active to clicked button
+        this.classList.add('active');
+        
+        // Move indicator
+        moveIndicator(this);
+        
+        // Smooth scroll to section
+        const sectionId = this.getAttribute('data-section');
+        const section = document.getElementById(sectionId);
+        
+        if (section) {
+            section.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Update active button on scroll
+function updateActiveOnScroll() {
+    const sections = document.querySelectorAll('#home, #releases');
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            const sectionId = section.getAttribute('id');
+            
+            navBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-section') === sectionId) {
+                    btn.classList.add('active');
+                    moveIndicator(btn);
+                }
+            });
+        }
+    });
+}
+
+// Listen for scroll
+window.addEventListener('scroll', updateActiveOnScroll);
+
+// Initialize on load
+window.addEventListener('load', initIndicator);
+window.addEventListener('resize', () => {
+    const activeBtn = document.querySelector('.nav-btn.active');
+    if (activeBtn) moveIndicator(activeBtn);
+});
+
+
+// ================================
 // GSAP SPLIT TEXT ANIMATION
 // ================================
 
@@ -58,7 +153,6 @@ function initSplitTextAnimations() {
         
         if (isInView) {
             // Animate immediately with delay
-            // Using "expo.out" for dramatic slowdown at the end
             gsap.to(targets, {
                 opacity: 1,
                 y: 0,
@@ -190,8 +284,8 @@ loader.load(
             if (child.isMesh) {
                 child.material = new THREE.MeshStandardMaterial({
                     color: 0xcccccc,
-                    metalness: 0,
-                    roughness: 1,
+                    metalness: 0.6,
+                    roughness: 0.4,
                     side: THREE.DoubleSide
                 });
             }
