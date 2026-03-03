@@ -48,8 +48,8 @@ function initSplitTextAnimations() {
         // Set initial state
         gsap.set(targets, {
             opacity: 0,
-            y: 50,
-            rotateX: -40
+            y: 60,
+            rotateX: -50
         });
         
         // Check if element is in the first viewport
@@ -58,14 +58,15 @@ function initSplitTextAnimations() {
         
         if (isInView) {
             // Animate immediately with delay
+            // Using "expo.out" for dramatic slowdown at the end
             gsap.to(targets, {
                 opacity: 1,
                 y: 0,
                 rotateX: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-                stagger: 0.04,
-                delay: 0.3 + (index * 0.3)
+                duration: 1.4,
+                ease: 'expo.out',
+                stagger: 0.05,
+                delay: 0.4 + (index * 0.3)
             });
         } else {
             // Animate on scroll
@@ -73,9 +74,9 @@ function initSplitTextAnimations() {
                 opacity: 1,
                 y: 0,
                 rotateX: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-                stagger: 0.04,
+                duration: 1.4,
+                ease: 'expo.out',
+                stagger: 0.05,
                 scrollTrigger: {
                     trigger: element,
                     start: 'top 85%',
@@ -92,7 +93,6 @@ function initSplitTextAnimations() {
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSplitTextAnimations);
 } else {
-    // Small delay to ensure everything is loaded
     setTimeout(initSplitTextAnimations, 100);
 }
 

@@ -152,11 +152,13 @@ body::before {
     text-align: right;
 }
 
+/* BIGGER TEXT */
 .text-content h1 {
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: #ffffff;
+    line-height: 1.1;
 }
 
 /* Gradient on individual characters */
@@ -168,7 +170,7 @@ body::before {
 }
 
 .text-content p {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     color: rgba(255, 255, 255, 0.6);
     font-weight: 300;
 }
@@ -181,7 +183,7 @@ body::before {
     overflow: visible;
 }
 
-/* Individual characters - start visible, GSAP will animate */
+/* Individual characters */
 .char {
     display: inline-block;
     will-change: transform, opacity;
@@ -247,9 +249,11 @@ body::before {
     z-index: 61;
 }
 
+/* BIGGER SCROLL SECTION TEXT */
 .scroll-section h2 {
     color: white;
-    font-size: 2.5rem;
+    font-size: 4rem;
+    font-weight: 700;
 }
 
 /* Responsive */
@@ -270,6 +274,14 @@ body::before {
     }
     
     .text-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .text-content p {
+        font-size: 1.4rem;
+    }
+    
+    .scroll-section h2 {
         font-size: 2.5rem;
     }
 }
@@ -290,6 +302,14 @@ body::before {
     }
     
     .text-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .text-content p {
+        font-size: 1.2rem;
+    }
+    
+    .scroll-section h2 {
         font-size: 2rem;
     }
 }
