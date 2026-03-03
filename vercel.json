@@ -1,7 +1,14 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/WebsiteCode/index.html" },
-    { "source": "/", "destination": "/WebsiteCode/style.css" },
-    { "source": "/", "destination": "/WebsiteCode/script.js" }
+
+    { "source": "/", "destination": "/WebsiteCode/CSS/3dmodel.css" },
+    { "source": "/", "destination": "/WebsiteCode/CSS/dock.css" },
+    { "source": "/", "destination": "/WebsiteCode/CSS/main.css" },
+
+    { "source": "/", "destination": "/WebsiteCode/JS/3dmodel.js" },
+    { "source": "/", "destination": "/WebsiteCode/JS/dock.js" },
+    { "source": "/", "destination": "/WebsiteCode/JS/main.js" },
+    { "source": "/", "destination": "/WebsiteCode/JS/textanim.js" }
   ]
 }
