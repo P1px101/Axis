@@ -6,29 +6,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Split text into characters or words
 function splitTextIntoElements(element, type = 'chars') {
-    const text = element.textContent;
-    element.textContent = '';
+    const text = element.textContent.trim();
+    element.innerHTML = '';
     
     if (type === 'chars') {
-        // Split into characters
         for (let i = 0; i < text.length; i++) {
             const char = text[i];
+            const span = document.createElement('span');
+            span.className = 'char';
+            
             if (char === ' ') {
-                const space = document.createElement('span');
-                space.className = 'char-space';
-                space.innerHTML = '&nbsp;';
-                element.appendChild(space);
+                span.innerHTML = '&nbsp;';
             } else {
-                const span = document.createElement('span');
-                span.className = 'char';
                 span.textContent = char;
-                element.appendChild(span);
             }
+            
+            element.appendChild(span);
         }
         return element.querySelectorAll('.char');
+        
     } else if (type === 'words') {
-        // Split into words
-        const words = text.split(' ');
+        const words = text.split(/\s+/);
         words.forEach((word, index) => {
             const span = document.createElement('span');
             span.className = 'word';
@@ -47,58 +45,56 @@ function initSplitTextAnimations() {
         const animationType = element.dataset.animation || 'chars';
         const targets = splitTextIntoElements(element, animationType);
         
-        // Check if element is in the first viewport (animate immediately)
+        // Set initial state
+        gsap.set(targets, {
+            opacity: 0,
+            y: 50,
+            rotateX: -40
+        });
+        
+        // Check if element is in the first viewport
         const rect = element.getBoundingClientRect();
         const isInView = rect.top < window.innerHeight;
         
         if (isInView) {
-            // Animate immediately with a small delay based on index
-            gsap.fromTo(targets,
-                {
-                    opacity: 0,
-                    y: 40,
-                    rotateX: -90
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    duration: 1,
-                    ease: 'power3.out',
-                    stagger: 0.03,
-                    delay: 0.5 + (index * 0.2)
-                }
-            );
+            // Animate immediately with delay
+            gsap.to(targets, {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                stagger: 0.04,
+                delay: 0.3 + (index * 0.3)
+            });
         } else {
             // Animate on scroll
-            gsap.fromTo(targets,
-                {
-                    opacity: 0,
-                    y: 40,
-                    rotateX: -90
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    duration: 1,
-                    ease: 'power3.out',
-                    stagger: 0.03,
-                    scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        once: true
-                    }
+            gsap.to(targets, {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                stagger: 0.04,
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    once: true
                 }
-            );
+            });
         }
     });
+    
+    console.log('Split text animations initialized!');
 }
 
-// Wait for fonts to load before splitting text
-document.fonts.ready.then(() => {
-    initSplitTextAnimations();
-});
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSplitTextAnimations);
+} else {
+    // Small delay to ensure everything is loaded
+    setTimeout(initSplitTextAnimations, 100);
+}
 
 
 // ================================
@@ -231,7 +227,7 @@ window.addEventListener('resize', () => {
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-// Animation loop - ONLY mouse movement
+// Animation loop
 function animate() {
     requestAnimationFrame(animate);
     

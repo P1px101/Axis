@@ -156,6 +156,11 @@ body::before {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 15px;
+    color: #ffffff;
+}
+
+/* Gradient on individual characters */
+.text-content h1 .char {
     background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -172,32 +177,26 @@ body::before {
    SPLIT TEXT ANIMATION STYLES
    ================================ */
 
-/* Container for split text */
 .split-text {
-    overflow: hidden;
+    overflow: visible;
 }
 
-/* Individual characters */
+/* Individual characters - start visible, GSAP will animate */
 .char {
     display: inline-block;
-    opacity: 0;
-    transform: translateY(40px);
     will-change: transform, opacity;
 }
 
 /* Individual words */
 .word {
     display: inline-block;
-    opacity: 0;
-    transform: translateY(40px);
     will-change: transform, opacity;
-    margin-right: 0.3em;
+    margin-right: 0.25em;
 }
 
-/* Preserve spaces */
-.char-space {
-    display: inline-block;
-    width: 0.3em;
+/* Last word shouldn't have margin */
+.word:last-child {
+    margin-right: 0;
 }
 
 /* Loading indicator */
