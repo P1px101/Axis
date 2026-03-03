@@ -161,44 +161,12 @@ body::before {
     line-height: 1.1;
 }
 
-/* White gradient for "Welcome to" */
-.text-content h1 .welcome-text .char {
-    background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
+/* Silver gradient on characters */
+.text-content h1 .char {
+    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-/* RGB gradient for "Axis" only - Red to Green to Blue */
-.text-content h1 .axis-text {
-    display: inline-block;
-}
-
-.text-content h1 .axis-text .char {
-    background: linear-gradient(
-        90deg,
-        #ff0000 0%,
-        #00ff00 50%,
-        #0000ff 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 400% 100%;
-}
-
-/* Position the gradient for each character */
-.text-content h1 .axis-text .char:nth-child(1) {
-    background-position: 0% 50%;
-}
-.text-content h1 .axis-text .char:nth-child(2) {
-    background-position: 33% 50%;
-}
-.text-content h1 .axis-text .char:nth-child(3) {
-    background-position: 66% 50%;
-}
-.text-content h1 .axis-text .char:nth-child(4) {
-    background-position: 100% 50%;
 }
 
 .text-content p {
