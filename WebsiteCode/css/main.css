@@ -139,7 +139,7 @@ body::before {
 }
 
 .text-content p.description {
-    max-width: 400px;
+    max-width: 600px;
     margin-left: auto;
     line-height: 1.5;
 }
