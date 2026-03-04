@@ -138,6 +138,12 @@ body::before {
     font-weight: 300;
 }
 
+.text-content p.description {
+    max-width: 400px;
+    margin-left: auto;
+    line-height: 1.5;
+}
+
 /* ================================
    SPLIT TEXT ANIMATION
    ================================ */
