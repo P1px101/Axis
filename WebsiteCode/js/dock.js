@@ -57,7 +57,7 @@ navBtns.forEach(btn => {
 
 // Update active button on scroll
 function updateActiveOnScroll() {
-    const sections = document.querySelectorAll('#home, #releases');
+    const sections = document.querySelectorAll('#home, #releases, #about');
     const scrollPosition = window.scrollY + window.innerHeight / 3;
     
     sections.forEach(section => {
