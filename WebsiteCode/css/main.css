@@ -138,6 +138,7 @@ body::before {
     font-weight: 300;
 }
 
+/* Description with limited width */
 .text-content p.description {
     max-width: 600px;
     margin-left: auto;
@@ -215,48 +216,8 @@ body::before {
 }
 
 /* ================================
-   RESPONSIVE
+   ABOUT SECTION
    ================================ */
-
-@media (max-width: 900px) {
-    .text-content {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-        text-align: center;
-        margin-top: 20px;
-    }
-    
-    .text-content h1 {
-        font-size: 3.5rem;
-    }
-    
-    .text-content p {
-        font-size: 1.4rem;
-    }
-    
-    .scroll-section h2 {
-        font-size: 2.5rem;
-    }
-}
-
-@media (max-width: 500px) {
-    .text-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .text-content p {
-        font-size: 1.2rem;
-    }
-    
-    .scroll-section h2 {
-        font-size: 2rem;
-    }
-
-/* ================================
-    ABOUT SECTION
-    ================================ */
 
 .about-section {
     padding: 100px 20px;
@@ -336,10 +297,36 @@ body::before {
 }
 
 /* ================================
-   RESPONSIVE - ABOUT SECTION
+   RESPONSIVE
    ================================ */
 
 @media (max-width: 900px) {
+    .text-content {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .text-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .text-content p {
+        font-size: 1.4rem;
+    }
+    
+    .text-content p.description {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .scroll-section h2 {
+        font-size: 2.5rem;
+    }
+    
     .cards-container {
         flex-direction: column;
         gap: 30px;
@@ -364,6 +351,18 @@ body::before {
 }
 
 @media (max-width: 500px) {
+    .text-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .text-content p {
+        font-size: 1.2rem;
+    }
+    
+    .scroll-section h2 {
+        font-size: 2rem;
+    }
+    
     .about-section {
         padding: 60px 15px;
     }
@@ -375,5 +374,4 @@ body::before {
     .card {
         padding: 25px;
     }
-}
 }
