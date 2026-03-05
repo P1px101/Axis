@@ -4,7 +4,7 @@
 
 .profile-card {
     margin-top: 30px;
-    width: 200px;
+    width: 280px; /* longer card */
     margin-left: auto;
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 50px;
@@ -22,18 +22,18 @@
 }
 
 /* ================================
-   MAIN ROW (ALWAYS VISIBLE)
+   MAIN ROW
    ================================ */
 
 .profile-card-main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 10px 6px 6px;
+    padding: 8px 14px 8px 8px;
 }
 
 /* ================================
-   LEFT SIDE - AVATAR & NAME
+   LEFT SIDE
    ================================ */
 
 .profile-left {
@@ -43,8 +43,8 @@
 }
 
 .profile-avatar {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -58,7 +58,7 @@
 }
 
 .profile-name {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: #ffffff;
 }
@@ -103,25 +103,30 @@
 .profile-card-expanded {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.3s ease;
     opacity: 0;
-    padding: 0 12px;
+    padding: 0 16px;
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 150px;
-    padding: 5px 12px 12px 12px;
+    max-height: 180px;
+    padding: 8px 16px 14px 16px;
     opacity: 1;
 }
 
+/* ================================
+   DESCRIPTION TEXT
+   ================================ */
+
 .profile-desc {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: clamp(0.72rem, 0.9vw, 0.85rem); /* auto scaling */
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.5;
     font-weight: 300;
     text-align: right;
+    word-wrap: break-word;
 }
 
 /* ================================
@@ -129,31 +134,27 @@
    ================================ */
 
 @media (max-width: 900px) {
+
     .profile-card {
-        width: 200px;
+        width: 260px;
         margin: 30px auto 0 auto;
     }
-    
+
     .profile-desc {
         text-align: center;
     }
+
 }
 
 @media (max-width: 500px) {
+
     .profile-card {
-        width: 180px;
+        width: 220px;
     }
-    
+
     .profile-avatar {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
     }
-    
-    .profile-name {
-        font-size: 0.8rem;
-    }
-    
-    .profile-desc {
-        font-size: 0.7rem;
-    }
+
 }
