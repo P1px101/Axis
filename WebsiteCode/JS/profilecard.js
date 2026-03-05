@@ -10,7 +10,7 @@ function fitTextToCard() {
 
     if (!profileDesc) return;
 
-    let size = 16; // starting font size (px)
+    let size = 8; // starting font size (px)
     profileDesc.style.fontSize = size + "px";
 
     const container = profileDesc.parentElement;
