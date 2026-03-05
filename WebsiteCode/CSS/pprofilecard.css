@@ -4,21 +4,20 @@
 
 .profile-card {
     margin-top: 30px;
-    width: 280px; /* longer card */
+    width: 420px; /* MUCH longer */
     margin-left: auto;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50px;
+
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 20px; /* keep constant to stop weird animation */
+
     background: transparent;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    transition: border-color 0.3s ease;
 }
 
 .profile-card:hover {
-    border-color: rgba(255, 255, 255, 0.9);
-}
-
-.profile-card.expanded {
-    border-radius: 20px;
+    border-color: rgba(255,255,255,0.9);
 }
 
 /* ================================
@@ -29,7 +28,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 14px 8px 8px;
+
+    padding: 10px 16px;
 }
 
 /* ================================
@@ -39,15 +39,16 @@
 .profile-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .profile-avatar {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    border: 1px solid rgba(255,255,255,0.5);
     flex-shrink: 0;
 }
 
@@ -60,7 +61,7 @@
 .profile-name {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #ffffff;
+    color: white;
 }
 
 /* ================================
@@ -68,28 +69,32 @@
    ================================ */
 
 .profile-expand-btn {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
+
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255,255,255,0.4);
+
     background: transparent;
     cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+
+    transition: all 0.25s ease;
 }
 
 .profile-expand-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255,255,255,0.1);
 }
 
 .arrow-icon {
     width: 14px;
     height: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: rgba(255,255,255,0.8);
+
+    transition: transform 0.3s ease;
 }
 
 .profile-card.expanded .arrow-icon {
@@ -101,32 +106,38 @@
    ================================ */
 
 .profile-card-expanded {
+
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s ease;
-    opacity: 0;
-    padding: 0 16px;
+
+    padding: 0 18px;
+
+    transition: max-height 0.35s ease, padding 0.35s ease;
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 180px;
-    padding: 8px 16px 14px 16px;
-    opacity: 1;
+
+    max-height: 200px;
+    padding: 0 18px 16px 18px;
 }
 
 /* ================================
-   DESCRIPTION TEXT
+   DESCRIPTION
    ================================ */
 
 .profile-desc {
-    font-size: clamp(0.72rem, 0.9vw, 0.85rem); /* auto scaling */
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.5;
+
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+
+    line-height: 1.6;
     font-weight: 300;
+
+    margin-top: 6px;
+
     text-align: right;
-    word-wrap: break-word;
+
+    word-break: break-word;
 }
 
 /* ================================
@@ -136,7 +147,7 @@
 @media (max-width: 900px) {
 
     .profile-card {
-        width: 260px;
+        width: 90%;
         margin: 30px auto 0 auto;
     }
 
@@ -149,12 +160,7 @@
 @media (max-width: 500px) {
 
     .profile-card {
-        width: 220px;
-    }
-
-    .profile-avatar {
-        width: 26px;
-        height: 26px;
+        width: 95%;
     }
 
 }
