@@ -127,7 +127,7 @@
 
 .profile-desc {
 
-    font-size: clamp(0.55rem, 0.7vw, 0.75rem);
+    font-size: clamp(0.3rem, 0.8vw, 0.7rem);
     color: rgba(255,255,255,0.7);
 
     line-height: 1.6;
