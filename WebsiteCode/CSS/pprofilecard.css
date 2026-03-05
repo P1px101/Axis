@@ -117,7 +117,7 @@
 
 .profile-card.expanded .profile-card-expanded {
 
-    max-height: 500px;
+    max-height: 200px;
     padding: 0 18px 16px 18px;
 }
 
@@ -126,18 +126,13 @@
    ================================ */
 
 .profile-desc {
-
-    font-size: clamp(0.3rem, 0.8vw, 0.7rem);
+    font-size: 1rem; /* base size */
     color: rgba(255,255,255,0.7);
-
-    line-height: 1.6;
+    line-height: 1.4;
     font-weight: 300;
-
     margin-top: 6px;
-
     text-align: right;
-
-    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* ================================
