@@ -1,0 +1,165 @@
+/* ================================
+   PROFILE CARD
+   ================================ */
+
+.profile-card {
+    margin-top: 30px;
+    width: 320px;
+    margin-left: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-card:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.profile-card.expanded {
+    border-radius: 24px;
+}
+
+/* ================================
+   MAIN ROW (ALWAYS VISIBLE)
+   ================================ */
+
+.profile-card-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px 10px 10px;
+}
+
+/* ================================
+   LEFT SIDE - AVATAR & NAME
+   ================================ */
+
+.profile-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* ================================
+   EXPAND BUTTON
+   ================================ */
+
+.profile-expand-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.profile-expand-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.arrow-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-card.expanded .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* ================================
+   EXPANDED CONTENT
+   ================================ */
+
+.profile-card-expanded {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+    opacity: 0;
+    padding: 0 20px;
+}
+
+.profile-card.expanded .profile-card-expanded {
+    max-height: 200px;
+    padding: 0 20px 20px 20px;
+    opacity: 1;
+}
+
+.profile-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    font-weight: 300;
+    text-align: right;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 900px) {
+    .profile-card {
+        width: 100%;
+        max-width: 320px;
+        margin: 30px auto 0 auto;
+    }
+    
+    .profile-desc {
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .profile-card {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .profile-avatar {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .profile-name {
+        font-size: 0.9rem;
+    }
+    
+    .profile-desc {
+        font-size: 0.85rem;
+    }
+}
