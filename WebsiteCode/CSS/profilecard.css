@@ -4,11 +4,11 @@
 
 .profile-cards {
     position: absolute;
-    right: 10%;                     /* ⭐ Same as text-content */
-    top: 55%;                       /* ⭐ Below the welcome text */
+    right: 10%;
+    top: 42%;                       /* ⭐ Moved closer to text */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;          /* ⭐ Align to right like text */
+    align-items: flex-end;
     gap: 20px;
     z-index: 10;
 }
@@ -50,8 +50,8 @@
 }
 
 .profile-avatar {
-    width: 40px;
-    height: 40px;
+    width: 44px;                    /* ⭐ Slightly bigger */
+    height: 44px;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid rgba(255,255,255,0.4);
@@ -65,15 +65,16 @@
 }
 
 .profile-name {
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.2rem;              /* ⭐ Bigger text */
+    font-weight: 600;
     color: white;
+    letter-spacing: 0.5px;
 }
 
 /* Expand button */
 .profile-expand-btn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.3);
     background: rgba(255,255,255,0.05);
@@ -91,8 +92,8 @@
 }
 
 .arrow-icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     color: rgba(255,255,255,0.7);
     transition: transform 0.3s ease;
 }
@@ -108,21 +109,21 @@
     opacity: 0;
     padding: 0 20px;
     transition: 
-        max-height 0.4s ease,
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.4s ease,
         padding 0.4s ease;
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 400px;
+    max-height: 1000px;             /* ⭐ Large value to fit any content */
     opacity: 1;
-    padding: 0 20px 18px 20px;
+    padding: 0 20px 20px 20px;
 }
 
 .profile-desc {
-    font-size: 14px;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.6;
+    font-size: 1rem;                /* ⭐ Bigger text */
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
     font-weight: 300;
     margin: 0;
     text-align: left;
@@ -137,7 +138,7 @@
         align-items: center;
         width: 100%;
         padding: 0 20px;
-        margin-top: 50px;
+        margin-top: 40px;
     }
     
     .profile-card {
@@ -148,12 +149,20 @@
     .profile-card:hover {
         transform: none;
     }
+    
+    .profile-name {
+        font-size: 1.1rem;
+    }
+    
+    .profile-desc {
+        font-size: 0.95rem;
+    }
 }
 
 @media (max-width: 600px) {
     .profile-cards {
         gap: 16px;
-        margin-top: 40px;
+        margin-top: 30px;
     }
     
     .profile-card {
@@ -165,17 +174,17 @@
     }
     
     .profile-avatar {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
     }
     
     .profile-name {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
     
     .profile-desc {
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
     
     .profile-card-expanded {

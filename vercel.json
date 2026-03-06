@@ -5,7 +5,7 @@
     { "source": "/", "destination": "/WebsiteCode/CSS/3dmodel.css" },
     { "source": "/", "destination": "/WebsiteCode/CSS/dock.css" },
     { "source": "/", "destination": "/WebsiteCode/CSS/main.css" },
-    { "source": "/", "destination": "/WebsiteCode/CSS/pprofilecard.css" },
+    { "source": "/", "destination": "/WebsiteCode/CSS/profilecard.css" },
 
     { "source": "/", "destination": "/WebsiteCode/JS/3dmodel.js" },
     { "source": "/", "destination": "/WebsiteCode/JS/dock.js" },
