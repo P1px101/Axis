@@ -42,8 +42,9 @@ navBtns.forEach(btn => {
         // Move indicator
         moveIndicator(this);
         
-        // Smooth scroll to section
-        const sectionId = this.getAttribute('data-section');
+        // Get section ID from href attribute (removes the #)
+        const href = this.getAttribute('href');
+        const sectionId = href.replace('#', '');
         const section = document.getElementById(sectionId);
         
         if (section) {
@@ -57,7 +58,7 @@ navBtns.forEach(btn => {
 
 // Update active button on scroll
 function updateActiveOnScroll() {
-    const sections = document.querySelectorAll('#home, #releases, #about');
+    const sections = document.querySelectorAll('#home, #releases');
     const scrollPosition = window.scrollY + window.innerHeight / 3;
     
     sections.forEach(section => {
@@ -68,8 +69,9 @@ function updateActiveOnScroll() {
             const sectionId = section.getAttribute('id');
             
             navBtns.forEach(btn => {
+                const btnHref = btn.getAttribute('href');
                 btn.classList.remove('active');
-                if (btn.getAttribute('data-section') === sectionId) {
+                if (btnHref === '#' + sectionId) {
                     btn.classList.add('active');
                     moveIndicator(btn);
                 }
