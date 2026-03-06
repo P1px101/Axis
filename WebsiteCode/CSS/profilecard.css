@@ -107,7 +107,7 @@
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    padding: 0 24px;
+    padding: 0 30px;
     transition: 
         max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.4s ease,
@@ -115,24 +115,24 @@
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 2000px;             /* ⭐ Even larger to fit any content */
+    max-height: 3000px;
     opacity: 1;
-    padding: 10px 24px 30px 24px;   /* ⭐ More padding: top, sides, bottom */
+    padding: 20px 30px 50px 30px;   /* ⭐ Much more padding */
 }
 
 .profile-desc {
-    font-size: 1rem;
+    font-size: 1.05rem;             /* ⭐ Slightly bigger */
     color: rgba(255,255,255,0.75);
-    line-height: 1.8;               /* ⭐ More line spacing */
+    line-height: 2;                 /* ⭐ Much more line spacing */
     font-weight: 300;
     margin: 0;
     text-align: left;
-    padding-bottom: 10px;           /* ⭐ Extra space at bottom */
+    padding-bottom: 20px;           /* ⭐ More space at bottom */
 }
 
-/* ⭐ Add spacing between paragraphs if multiple */
+/* Add spacing between paragraphs if multiple */
 .profile-desc + .profile-desc {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -161,11 +161,12 @@
     }
     
     .profile-desc {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        line-height: 1.9;
     }
     
     .profile-card.expanded .profile-card-expanded {
-        padding: 10px 20px 28px 20px;
+        padding: 18px 25px 45px 25px;
     }
 }
 
@@ -193,15 +194,16 @@
     }
     
     .profile-desc {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        padding-bottom: 15px;
     }
     
     .profile-card-expanded {
-        padding: 0 16px;
+        padding: 0 20px;
     }
     
     .profile-card.expanded .profile-card-expanded {
-        padding: 8px 16px 24px 16px;
+        padding: 15px 20px 40px 20px;
     }
 }
