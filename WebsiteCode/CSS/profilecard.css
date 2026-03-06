@@ -15,7 +15,7 @@
 
 /* ==================== CARD ==================== */
 .profile-card {
-    width: 650px;
+    width: 650px;                   /* ⭐ Longer/wider card */
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 24px;
     background: rgba(10, 10, 10, 0.6);
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 24px;
+    padding: 14px 24px;             /* ⭐ More horizontal padding */
     cursor: pointer;
     user-select: none;
 }
@@ -104,40 +104,31 @@
 
 /* ==================== EXPANDED CONTENT ==================== */
 .profile-card-expanded {
-    display: grid;
-    grid-template-rows: 0fr;        /* ⭐ Collapsed state */
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
+    padding: 0 35px;
     transition: 
-        grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.4s ease;
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s ease,
+        padding 0.4s ease;
 }
 
 .profile-card.expanded .profile-card-expanded {
-    grid-template-rows: 1fr;        /* ⭐ Expanded state - auto height */
+    max-height: 3000px;
     opacity: 1;
-}
-
-/* ⭐ Inner wrapper to handle the grid animation */
-.profile-card-expanded-inner {
-    overflow: hidden;
-}
-
-.profile-card-expanded-inner .profile-content {
-    padding: 30px 35px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 20px 35px 50px 35px;   /* ⭐ Keep big padding */
 }
 
 .profile-desc {
     font-size: 1.05rem;
     color: rgba(255,255,255,0.75);
-    line-height: 1.5;
+    line-height: 1.5;               /* ⭐ Smaller line height */
     font-weight: 300;
     margin: 0;
     text-align: center;
-    width: 100%;
+    padding-bottom: 20px;
+    max-width: 520px;
 }
 
 /* Add spacing between paragraphs if multiple */
@@ -175,8 +166,8 @@
         line-height: 1.5;
     }
     
-    .profile-card-expanded-inner .profile-content {
-        padding: 25px 28px;
+    .profile-card.expanded .profile-card-expanded {
+        padding: 18px 28px 45px 28px;
     }
 }
 
@@ -207,9 +198,14 @@
     .profile-desc {
         font-size: 0.95rem;
         line-height: 1.5;
+        padding-bottom: 15px;
     }
     
-    .profile-card-expanded-inner .profile-content {
-        padding: 20px 22px;
+    .profile-card-expanded {
+        padding: 0 22px;
+    }
+    
+    .profile-card.expanded .profile-card-expanded {
+        padding: 15px 22px 40px 22px;
     }
 }
