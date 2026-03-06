@@ -15,7 +15,7 @@
 
 /* ==================== CARD ==================== */
 .profile-card {
-    width: 650px;                   /* ⭐ Longer/wider card */
+    width: 650px;
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 24px;
     background: rgba(10, 10, 10, 0.6);
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 24px;             /* ⭐ More horizontal padding */
+    padding: 14px 24px;
     cursor: pointer;
     user-select: none;
 }
@@ -108,6 +108,10 @@
     overflow: hidden;
     opacity: 0;
     padding: 0 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;        /* ⭐ Center content vertically */
+    align-items: center;            /* ⭐ Center content horizontally */
     transition: 
         max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.4s ease,
@@ -117,17 +121,18 @@
 .profile-card.expanded .profile-card-expanded {
     max-height: 3000px;
     opacity: 1;
-    padding: 20px 35px 50px 35px;   /* ⭐ Keep big padding */
+    padding: 30px 35px;             /* ⭐ Equal padding top and bottom */
 }
 
 .profile-desc {
     font-size: 1.05rem;
     color: rgba(255,255,255,0.75);
-    line-height: 1.5;               /* ⭐ Smaller line height */
+    line-height: 1.5;
     font-weight: 300;
     margin: 0;
-    text-align: left;
-    padding-bottom: 20px;
+    text-align: center;             /* ⭐ Center text alignment */
+    padding: 0;                     /* ⭐ Removed bottom padding */
+    width: 100%;
 }
 
 /* Add spacing between paragraphs if multiple */
@@ -166,7 +171,7 @@
     }
     
     .profile-card.expanded .profile-card-expanded {
-        padding: 18px 28px 45px 28px;
+        padding: 25px 28px;         /* ⭐ Equal padding */
     }
 }
 
@@ -197,7 +202,6 @@
     .profile-desc {
         font-size: 0.95rem;
         line-height: 1.5;
-        padding-bottom: 15px;
     }
     
     .profile-card-expanded {
@@ -205,6 +209,6 @@
     }
     
     .profile-card.expanded .profile-card-expanded {
-        padding: 15px 22px 40px 22px;
+        padding: 20px 22px;         /* ⭐ Equal padding */
     }
 }
