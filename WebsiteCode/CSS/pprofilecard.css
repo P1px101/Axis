@@ -1,20 +1,21 @@
 /* ==============================================================
-   PROFILE CARDS — PLACED UNDER "WELCOME TO AXIS"
+   PROFILE CARDS — STACKED VERTICALLY UNDER "WELCOME TO AXIS"
    ============================================================== */
 
-/* Center the whole cards container */
+/* Stack cards vertically, centered */
 .profile-cards {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
+    flex-direction: column;  /* ⭐ STACK VERTICALLY */
+    align-items: center;     /* ⭐ CENTER HORIZONTALLY */
+    gap: 24px;
     width: 100%;
-    margin-top: 60px;      /* space under welcome text */
+    margin-top: 60px;
 }
 
 /* ==================== CARD ==================== */
 .profile-card {
     width: 620px;
+    max-width: 90%;
     border: 2px solid rgba(255,255,255,0.6);
     border-radius: 30px;
     background: transparent;
@@ -33,6 +34,7 @@
     justify-content: space-between;
     padding: 10px 16px;
     cursor: pointer;
+    user-select: none; /* Prevent text selection on click */
 }
 
 /* Left side (avatar + name) */
@@ -40,6 +42,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    pointer-events: none; /* ⭐ Prevent click issues */
 }
 
 .profile-avatar {
@@ -75,6 +78,7 @@
     align-items: center;
     justify-content: center;
     transition: background 0.25s ease;
+    pointer-events: none; /* ⭐ Let parent handle clicks */
 }
 
 .profile-expand-btn:hover {
@@ -105,28 +109,22 @@
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 500px;   /* enough for longest description */
+    max-height: 500px;
     opacity: 1;
-    padding: 12px 18px;
+    padding: 12px 18px 16px 18px;
 }
 
 .profile-desc {
     font-size: 14px;
     color: rgba(255,255,255,0.7);
-    line-height: 1.4;
+    line-height: 1.5;
     font-weight: 300;
     margin: 0;
     text-align: left;
 }
 
 /* ==================== RESPONSIVE ==================== */
-@media (max-width: 900px) {
-    .profile-card {
-        width: 90%;
-    }
-}
-
-@media (max-width: 500px) {
+@media (max-width: 700px) {
     .profile-card {
         width: 95%;
     }
@@ -134,5 +132,15 @@
     .profile-cards {
         gap: 20px;
         margin-top: 40px;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-card-main {
+        padding: 8px 12px;
+    }
+    
+    .profile-desc {
+        font-size: 13px;
     }
 }
