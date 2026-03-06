@@ -126,7 +126,7 @@
     line-height: 1.5;               /* ⭐ Smaller line height */
     font-weight: 300;
     margin: 0;
-    text-align: center;
+    text-align: right;
     padding-bottom: 20px;
     max-width: 520px;
 }
