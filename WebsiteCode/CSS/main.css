@@ -1,5 +1,5 @@
 /* ================================
-   GLOBAL
+   MAIN.CSS
 ================================ */
 
 * {
@@ -10,7 +10,7 @@
 
 body {
     font-family: "Inter", sans-serif;
-    background: #0b0b0b;
+    background-color: #0a0a0a;
     color: white;
 }
 
@@ -18,31 +18,23 @@ body {
    LAYOUT
 ================================ */
 
-.container {
-    width: 100%;
-    max-width: 1400px;
-    margin: auto;
-    padding: 80px 60px;
+.main-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 120px;
+    gap: 80px;
 }
 
 /* ================================
-   TOP SECTION
+   LEFT SIDE (AXIS)
 ================================ */
 
-.top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-/* LEFT SIDE (AXIS) */
-
-.axis-section {
+.axis-container {
     max-width: 500px;
 }
 
 .axis-title {
-    font-size: 80px;
+    font-size: 72px;
     font-weight: 900;
     letter-spacing: -2px;
 }
@@ -51,18 +43,21 @@ body {
     margin-top: 20px;
     font-size: 18px;
     line-height: 1.6;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.75);
 }
 
-/* RIGHT SIDE (ABOUT US) */
+/* ================================
+   RIGHT SIDE (ABOUT US)
+================================ */
 
-.about-section {
-    text-align: right;
+.about-container {
+    flex: 1;
 }
 
 .about-title {
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 800;
+    margin-bottom: 40px;
 }
 
 /* ================================
@@ -70,74 +65,31 @@ body {
 ================================ */
 
 .cards {
-    margin-top: 60px;
     display: flex;
-    gap: 40px;
+    gap: 30px;
 }
-
-/* CARD */
 
 .profile-card {
-    width: 360px;
-    background: #141414;
-    border-radius: 16px;
-    padding: 30px;
-    transition: transform 0.25s ease;
+    width: 340px;
+    background: #121212;
+    border-radius: 14px;
+    padding: 25px;
 }
-
-.profile-card:hover {
-    transform: translateY(-6px);
-}
-
-/* PROFILE IMAGE */
-
-.profile-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #333;
-    margin-bottom: 20px;
-}
-
-/* NAME */
 
 .profile-name {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
 }
 
-/* ROLE */
-
 .profile-role {
     font-size: 14px;
-    margin-top: 4px;
     color: rgba(255,255,255,0.6);
+    margin-top: 3px;
 }
 
-/* DESCRIPTION */
-
 .profile-desc {
-    margin-top: 16px;
+    margin-top: 15px;
     font-size: 15px;
     line-height: 1.6;
     color: rgba(255,255,255,0.75);
-}
-
-/* SOCIALS */
-
-.profile-socials {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.profile-socials a {
-    font-size: 14px;
-    color: white;
-    text-decoration: none;
-    opacity: 0.7;
-}
-
-.profile-socials a:hover {
-    opacity: 1;
 }
