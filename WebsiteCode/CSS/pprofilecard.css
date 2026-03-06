@@ -18,7 +18,6 @@
 /* ================================
    PROFILE CARD
    ================================ */
-
 .profile-card {
     margin: 30px auto 0 auto;
     width: 620px;
@@ -39,7 +38,6 @@
 /* ================================
    MAIN ROW
    ================================ */
-
 .profile-card-main {
     display: flex;
     align-items: center;
@@ -51,7 +49,6 @@
 /* ================================
    LEFT SIDE
    ================================ */
-
 .profile-left {
     display: flex;
     align-items: center;
@@ -83,7 +80,6 @@
 /* ================================
    EXPAND BUTTON
    ================================ */
-
 .profile-expand-btn {
     width: 26px;
     height: 26px;
@@ -120,7 +116,6 @@
 /* ================================
    EXPANDED CONTENT
    ================================ */
-
 .profile-card-expanded {
     max-height: 0;
     overflow: hidden;
@@ -130,15 +125,9 @@
     transition: max-height 0.35s ease, padding 0.35s ease;
 }
 
-.profile-card.expanded .profile-card-expanded {
-    max-height: 200px;
-    padding: 0 18px 16px 18px;
-}
-
 /* ================================
    DESCRIPTION
    ================================ */
-
 .profile-desc {
     font-size: 14px;
     color: rgba(255,255,255,0.7);
@@ -151,7 +140,6 @@
 /* ================================
    RESPONSIVE
    ================================ */
-
 @media (max-width: 900px) {
     .profile-card {
         width: 90%;
