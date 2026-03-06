@@ -11,9 +11,8 @@
    ================================ */
 
 .profile-card {
-    margin-top: 30px;
+    margin-top: 30px auto 0 auto; /*Changes here too so it is in middle bruh*/
     width: 620px; /* MUCH longer */
-    margin-left: auto;
 
     border: 2px solid rgba(255,255,255,0.6);
     border-radius: 30px; /* keep constant to stop weird animation */
