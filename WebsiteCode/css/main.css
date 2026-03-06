@@ -100,9 +100,10 @@ body::before {
     min-height: 100vh;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;        /* ⭐ Changed from center */
     justify-content: flex-start;
     padding-top: 80px;
+    padding-bottom: 100px;          /* ⭐ Added space for cards */
 }
 
 /* ================================
@@ -112,7 +113,7 @@ body::before {
 .text-content {
     position: absolute;
     right: 10%;
-    top: 50%;
+    top: 30%;                       /* ⭐ Changed from 50% - moves text up */
     transform: translateY(-50%);
     text-align: right;
 }
@@ -301,6 +302,13 @@ body::before {
    ================================ */
 
 @media (max-width: 900px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    
     .text-content {
         position: relative;
         right: auto;
@@ -308,6 +316,7 @@ body::before {
         transform: none;
         text-align: center;
         margin-top: 20px;
+        padding: 0 20px;
     }
     
     .text-content h1 {
@@ -351,6 +360,15 @@ body::before {
 }
 
 @media (max-width: 500px) {
+    .content {
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    
+    .text-content {
+        padding: 0 15px;
+    }
+    
     .text-content h1 {
         font-size: 2.5rem;
     }
