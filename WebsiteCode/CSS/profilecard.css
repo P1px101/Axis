@@ -104,24 +104,30 @@
 
 /* ==================== EXPANDED CONTENT ==================== */
 .profile-card-expanded {
-    max-height: 0;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;        /* ⭐ Collapsed state */
     opacity: 0;
-    padding: 0 35px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;        /* ⭐ Center content vertically */
-    align-items: center;            /* ⭐ Center content horizontally */
     transition: 
-        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.4s ease,
-        padding 0.4s ease;
+        grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s ease;
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 3000px;
+    grid-template-rows: 1fr;        /* ⭐ Expanded state - auto height */
     opacity: 1;
-    padding: 30px 35px;             /* ⭐ Equal padding top and bottom */
+}
+
+/* ⭐ Inner wrapper to handle the grid animation */
+.profile-card-expanded-inner {
+    overflow: hidden;
+}
+
+.profile-card-expanded-inner .profile-content {
+    padding: 30px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-desc {
@@ -130,8 +136,7 @@
     line-height: 1.5;
     font-weight: 300;
     margin: 0;
-    text-align: center;             /* ⭐ Center text alignment */
-    padding: 0;                     /* ⭐ Removed bottom padding */
+    text-align: center;
     width: 100%;
 }
 
@@ -170,8 +175,8 @@
         line-height: 1.5;
     }
     
-    .profile-card.expanded .profile-card-expanded {
-        padding: 25px 28px;         /* ⭐ Equal padding */
+    .profile-card-expanded-inner .profile-content {
+        padding: 25px 28px;
     }
 }
 
@@ -204,11 +209,7 @@
         line-height: 1.5;
     }
     
-    .profile-card-expanded {
-        padding: 0 22px;
-    }
-    
-    .profile-card.expanded .profile-card-expanded {
-        padding: 20px 22px;         /* ⭐ Equal padding */
+    .profile-card-expanded-inner .profile-content {
+        padding: 20px 22px;
     }
 }
