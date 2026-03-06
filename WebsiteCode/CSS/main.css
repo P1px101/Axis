@@ -97,14 +97,14 @@ body::before {
 
 .hero-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1800px;              /* ⭐ Wider container */
 
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
-    gap: 120px;
-    padding: 0 80px;
+    gap: 80px;                      /* ⭐ Base gap (space-between handles the rest) */
+    padding: 0 40px;                /* ⭐ Less padding = more edge spacing */
 }
 
 /* ================================
@@ -114,6 +114,8 @@ body::before {
 .hero-left {
     max-width: 600px;
     perspective: 1000px;
+    flex-shrink: 0;
+    padding-left: 40px;             /* ⭐ Push content more to the left edge */
 }
 
 .hero-left h1 {
@@ -147,12 +149,15 @@ body::before {
 
 .hero-right {
     width: 650px;
+    flex-shrink: 0;
+    padding-right: 40px;            /* ⭐ Push content more to the right edge */
 }
 
 .hero-right h2 {
     font-size: 2.5rem;
     margin-bottom: 30px;
     perspective: 1000px;
+    text-align: right;              /* ⭐ Align "About Us" text to the right */
 }
 
 /* Fix profile cards positioning */
@@ -165,7 +170,7 @@ body::before {
     flex-direction: column;
     gap: 20px;
 
-    align-items: stretch;
+    align-items: flex-end;          /* ⭐ Align cards to the right */
 }
 
 /* ================================
@@ -325,6 +330,21 @@ body::before {
    RESPONSIVE
    ================================ */
 
+@media (max-width: 1400px) {
+    .hero-container {
+        max-width: 100%;
+        padding: 0 60px;
+    }
+    
+    .hero-left {
+        padding-left: 20px;
+    }
+    
+    .hero-right {
+        padding-right: 20px;
+    }
+}
+
 @media (max-width: 900px) {
 
     .hero-container {
@@ -337,6 +357,10 @@ body::before {
         padding: 0 30px;
     }
 
+    .hero-left {
+        padding-left: 0;
+    }
+
     .hero-left h1 {
         font-size: 4rem;
     }
@@ -347,6 +371,15 @@ body::before {
 
     .hero-right {
         width: 100%;
+        padding-right: 0;
+    }
+
+    .hero-right h2 {
+        text-align: center;         /* ⭐ Center on mobile */
+    }
+
+    .profile-cards {
+        align-items: center;        /* ⭐ Center cards on mobile */
     }
 
     .scroll-section h2 {
