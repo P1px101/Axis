@@ -1,5 +1,4 @@
 //its me Golonka himself with some fixes again lmao I hope it works now I rewrited it like 3 times; Update : 4 times
-
 const cards = document.querySelectorAll(".profile-card");
 
 cards.forEach(card => {
