@@ -1,0 +1,395 @@
+/* ================================
+   BASE STYLES & RESET
+   ================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0a0a0a;
+    min-height: 200vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ================================
+   BACKGROUND
+   ================================ */
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(40, 40, 60, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(40, 40, 60, 0.2) 0%, transparent 50%);
+    z-index: -1;
+}
+
+/* ================================
+   GRADIENT OVERLAY
+   ================================ */
+
+.gradient-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    background: 
+        /* Bottom gradient */
+        linear-gradient(
+            to top,
+            rgba(10, 10, 10, 1) 0%,
+            rgba(10, 10, 10, 0.98) 5%,
+            rgba(10, 10, 10, 0.95) 10%,
+            rgba(10, 10, 10, 0.9) 15%,
+            rgba(10, 10, 10, 0.8) 20%,
+            rgba(10, 10, 10, 0.7) 25%,
+            rgba(10, 10, 10, 0.6) 30%,
+            rgba(10, 10, 10, 0.5) 35%,
+            rgba(10, 10, 10, 0.4) 40%,
+            rgba(10, 10, 10, 0.3) 45%,
+            rgba(10, 10, 10, 0.2) 50%,
+            rgba(10, 10, 10, 0.1) 55%,
+            rgba(10, 10, 10, 0.05) 60%,
+            transparent 70%
+        ),
+        /* Top fade */
+        linear-gradient(
+            to bottom,
+            rgba(10, 10, 10, 0.4) 0%,
+            rgba(10, 10, 10, 0.3) 5%,
+            rgba(10, 10, 10, 0.2) 10%,
+            rgba(10, 10, 10, 0.1) 15%,
+            rgba(10, 10, 10, 0.05) 20%,
+            transparent 30%
+        ),
+        /* Right side fade */
+        linear-gradient(
+            to left,
+            rgba(10, 10, 10, 0.7) 0%,
+            rgba(10, 10, 10, 0.5) 10%,
+            rgba(10, 10, 10, 0.35) 20%,
+            rgba(10, 10, 10, 0.2) 30%,
+            rgba(10, 10, 10, 0.1) 40%,
+            rgba(10, 10, 10, 0.05) 50%,
+            transparent 60%
+        );
+}
+
+/* ================================
+   MAIN CONTENT SECTION
+   ================================ */
+
+.content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;        /* ⭐ Changed from center */
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-bottom: 100px;          /* ⭐ Added space for cards */
+}
+
+/* ================================
+   TEXT CONTENT
+   ================================ */
+
+.text-content {
+    position: absolute;
+    right: 10%;
+    top: 30%;                       /* ⭐ Changed from 50% - moves text up */
+    transform: translateY(-50%);
+    text-align: right;
+}
+
+.text-content h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.text-content h1 .char {
+    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-content p {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+/* Description with limited width */
+.text-content p.description {
+    max-width: 600px;
+    margin-left: auto;
+    line-height: 1.5;
+}
+
+/* ================================
+   SPLIT TEXT ANIMATION
+   ================================ */
+
+.split-text {
+    overflow: visible;
+}
+
+.char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.word {
+    display: inline-block;
+    will-change: transform, opacity;
+    margin-right: 0.25em;
+}
+
+.word:last-child {
+    margin-right: 0;
+}
+
+/* ================================
+   SCROLL SECTION
+   ================================ */
+
+.scroll-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+    background-color: #0a0a0a;
+    padding-top: 100px;
+}
+
+.scroll-section::before {
+    content: '';
+    position: absolute;
+    top: -300px;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(10, 10, 10, 0.02) 10%,
+        rgba(10, 10, 10, 0.05) 20%,
+        rgba(10, 10, 10, 0.1) 30%,
+        rgba(10, 10, 10, 0.2) 40%,
+        rgba(10, 10, 10, 0.35) 50%,
+        rgba(10, 10, 10, 0.5) 60%,
+        rgba(10, 10, 10, 0.7) 70%,
+        rgba(10, 10, 10, 0.85) 80%,
+        rgba(10, 10, 10, 0.95) 90%,
+        #0a0a0a 100%
+    );
+    pointer-events: none;
+    z-index: 61;
+}
+
+.scroll-section h2 {
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+/* ================================
+   ABOUT SECTION
+   ================================ */
+
+.about-section {
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-container h2 {
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+/* ================================
+   CARDS CONTAINER
+   ================================ */
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+/* ================================
+   CARD STYLES
+   ================================ */
+
+.card {
+    flex: 1;
+    padding: 40px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 900px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    
+    .text-content {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+    
+    .text-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .text-content p {
+        font-size: 1.4rem;
+    }
+    
+    .text-content p.description {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .scroll-section h2 {
+        font-size: 2.5rem;
+    }
+    
+    .cards-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .about-container h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+    
+    .card {
+        padding: 30px;
+    }
+    
+    .card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .card p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .content {
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    
+    .text-content {
+        padding: 0 15px;
+    }
+    
+    .text-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .text-content p {
+        font-size: 1.2rem;
+    }
+    
+    .scroll-section h2 {
+        font-size: 2rem;
+    }
+    
+    .about-section {
+        padding: 60px 15px;
+    }
+    
+    .about-container h2 {
+        font-size: 2rem;
+    }
+    
+    .card {
+        padding: 25px;
+    }
+}
