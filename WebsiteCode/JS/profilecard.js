@@ -1,14 +1,13 @@
 /* ================================
-   PROFILECARD.JS - Expandable Card
+   PROFILECARD.JS - Expandable Card with some changes by Golonka
    ================================ */
 
-const profileCard = document.querySelector('.profile-card');
-const expandBtn = document.querySelector('.profile-expand-btn');
+const cards = document.querySelectorAll(".profile-card");
 
-if (expandBtn && profileCard) {
-    expandBtn.addEventListener('click', function () {
-        profileCard.classList.toggle('expanded');
+cards.forEach(card => {
+    const btn = card.querySelector(".profile-expand-btn");
+
+    btn.addEventListener("click", () => {
+        card.classList.toggle("expanded");
     });
-
-    console.log('Profile card initialized');
-}
+});
