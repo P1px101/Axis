@@ -98,12 +98,15 @@ body::before {
     position: relative;
     width: 100%;
     min-height: 100vh;
+
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;        /* ⭐ Changed from center */
-    justify-content: flex-start;
-    padding-top: 80px;
-    padding-bottom: 100px;          /* ⭐ Added space for cards */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 120px;
+    padding-bottom: 120px;
+    gap: 60px;
 }
 
 /* ================================
@@ -111,19 +114,19 @@ body::before {
    ================================ */
 
 .text-content {
-    position: absolute;
-    right: 10%;
-    top: 30%;                       /* ⭐ Changed from 50% - moves text up */
-    transform: translateY(-50%);
-    text-align: right;
+    position: relative;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 20px;
 }
 
 .text-content h1 {
     font-size: 6rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #ffffff;
     line-height: 1.1;
+    letter-spacing: -2px;
 }
 
 .text-content h1 .char {
@@ -134,16 +137,15 @@ body::before {
 }
 
 .text-content p {
-    font-size: 1.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.6rem;
+    color: rgba(255,255,255,0.65);
     font-weight: 300;
 }
 
-/* Description with limited width */
 .text-content p.description {
-    max-width: 600px;
-    margin-left: auto;
-    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* ================================
