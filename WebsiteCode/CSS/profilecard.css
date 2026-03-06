@@ -5,7 +5,7 @@
 .profile-cards {
     position: absolute;
     right: 10%;
-    top: 42%;                       /* ⭐ Moved closer to text */
+    top: 42%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -50,7 +50,7 @@
 }
 
 .profile-avatar {
-    width: 44px;                    /* ⭐ Slightly bigger */
+    width: 44px;
     height: 44px;
     border-radius: 50%;
     overflow: hidden;
@@ -65,7 +65,7 @@
 }
 
 .profile-name {
-    font-size: 1.2rem;              /* ⭐ Bigger text */
+    font-size: 1.2rem;
     font-weight: 600;
     color: white;
     letter-spacing: 0.5px;
@@ -107,7 +107,7 @@
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    padding: 0 20px;
+    padding: 0 24px;
     transition: 
         max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.4s ease,
@@ -115,18 +115,24 @@
 }
 
 .profile-card.expanded .profile-card-expanded {
-    max-height: 1000px;             /* ⭐ Large value to fit any content */
+    max-height: 2000px;             /* ⭐ Even larger to fit any content */
     opacity: 1;
-    padding: 0 20px 20px 20px;
+    padding: 10px 24px 30px 24px;   /* ⭐ More padding: top, sides, bottom */
 }
 
 .profile-desc {
-    font-size: 1rem;                /* ⭐ Bigger text */
+    font-size: 1rem;
     color: rgba(255,255,255,0.75);
-    line-height: 1.7;
+    line-height: 1.8;               /* ⭐ More line spacing */
     font-weight: 300;
     margin: 0;
     text-align: left;
+    padding-bottom: 10px;           /* ⭐ Extra space at bottom */
+}
+
+/* ⭐ Add spacing between paragraphs if multiple */
+.profile-desc + .profile-desc {
+    margin-top: 15px;
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -157,6 +163,10 @@
     .profile-desc {
         font-size: 0.95rem;
     }
+    
+    .profile-card.expanded .profile-card-expanded {
+        padding: 10px 20px 28px 20px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -184,7 +194,7 @@
     
     .profile-desc {
         font-size: 0.9rem;
-        line-height: 1.6;
+        line-height: 1.7;
     }
     
     .profile-card-expanded {
@@ -192,6 +202,6 @@
     }
     
     .profile-card.expanded .profile-card-expanded {
-        padding: 0 16px 16px 16px;
+        padding: 8px 16px 24px 16px;
     }
 }
