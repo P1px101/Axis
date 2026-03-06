@@ -1,26 +1,33 @@
-document.querySelectorAll(".profile-card").forEach(function (card) {
-    var btn = card.querySelector(".profile-expand-btn");
-    var content = card.querySelector(".profile-card-expanded");
+// ⭐⭐⭐⭐ FIXED: One card opens WITHOUT affecting the other ⭐⭐⭐⭐
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.profile-card');
 
-    if (!btn || !content) return;
+    cards.forEach(card => {
+        const btn        = card.querySelector('.profile-expand-btn');
+        const content    = card.querySelector('.profile-card-expanded');
 
-    btn.addEventListener("click", function (e) {
-        e.stopPropagation();
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // <— CRITICAL: stops event from bubbling
 
-        var isExpanded = card.classList.contains("expanded");
+            // Toggle ONLY this card
+            const isExpanded = card.classList.contains('expanded');
 
-        if (isExpanded) {
-            // collapse this card
-            content.style.maxHeight = "0px";
-            content.style.paddingTop = "0px";
-            content.style.paddingBottom = "0px";
-            card.classList.remove("expanded");
-        } else {
-            // expand this card only
-            content.style.paddingTop = "0px";
-            content.style.paddingBottom = "18px";
-            content.style.maxHeight = content.scrollHeight + 18 + "px";
-            card.classList.add("expanded");
-        }
+            if (isExpanded) {
+                // COLLAPSE
+                card.classList.remove('expanded');
+                content.style.maxHeight = '0px';
+                content.style.opacity   = '0';
+            } else {
+                // EXPAND
+                card.classList.add('expanded');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity   = '1';
+            }
+        });
+
+        /* Optional: clicking the header (avatar+name) also toggles */
+        card.querySelector('.profile-card-main').addEventListener('click', () => {
+            btn.click(); // re-use button click handler
+        });
     });
 });
