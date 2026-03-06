@@ -1,4 +1,5 @@
 // ⭐ FIXED: Each card opens/closes independently
+// ⭐ FIXED: Social buttons are now clickable
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.profile-card');
 
@@ -8,6 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Only listen on the header, NOT the button separately
         header.addEventListener('click', (e) => {
+            
+            // ⭐ Check if click was on a social button or inside one
+            const clickedSocial = e.target.closest('.social-btn');
+            if (clickedSocial) {
+                // Don't toggle card, let the link work normally
+                return;
+            }
+
             e.preventDefault();
             e.stopPropagation();
 
