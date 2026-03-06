@@ -6,6 +6,181 @@
     justify-content: center;
     gap: 40px;
 }
+
+/* container for multiple cards */
+.profile-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ================================
+   PROFILE CARD
+   ================================ */
+
+.profile-card {
+    margin: 30px auto 0 auto;
+    width: 620px; /* MUCH longer */
+
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 30px; /* keep constant to stop weird animation */
+
+    background: transparent;
+    overflow: hidden;
+
+    transition: border-color 0.3s ease;
+}
+
+.profile-card:hover {
+    border-color: rgba(255,255,255,0.9);
+}
+
+/* ================================
+   MAIN ROW
+   ================================ */
+
+.profile-card-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 16px;
+}
+
+/* ================================
+   LEFT SIDE
+   ================================ */
+
+.profile-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.5);
+    flex-shrink: 0;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+}
+
+/* ================================
+   EXPAND BUTTON
+   ================================ */
+
+.profile-expand-btn {
+    width: 26px;
+    height: 26px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+
+    background: transparent;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.25s ease;
+}
+
+.profile-expand-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.arrow-icon {
+    width: 14px;
+    height: 14px;
+    color: rgba(255,255,255,0.8);
+
+    transition: transform 0.3s ease;
+}
+
+.profile-card.expanded .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* ================================
+   EXPANDED CONTENT
+   ================================ */
+
+.profile-card-expanded {
+
+    max-height: 0;
+    overflow: hidden;
+
+    padding: 0 18px;
+
+    transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.profile-card.expanded .profile-card-expanded {
+
+    max-height: 200px;
+    padding: 0 18px 16px 18px;
+}
+
+/* ================================
+   DESCRIPTION
+   ================================ */
+
+.profile-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+    font-weight: 300;
+    margin-top: 6px;
+    text-align: right;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 900px) {
+
+    .profile-card {
+        width: 90%;
+        margin: 30px auto 0 auto;
+    }
+
+    .profile-desc {
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .profile-card {
+        width: 95%;
+    }
+
+}/*Me Golonkaa Added hereee stuff thaat say #about so it like works aand is centered yk basic shi*/
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
 /* ================================
    PROFILE CARD
    ================================ */
