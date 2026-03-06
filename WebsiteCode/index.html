@@ -1,107 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axis</title>
+
     <link rel="icon" type="image/png" href="WebsiteCode/Icons/AXIS 32 nice.png">
-    
-    <!-- CSS Files -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="WebsiteCode/CSS/main.css">
     <link rel="stylesheet" href="WebsiteCode/CSS/dock.css">
     <link rel="stylesheet" href="WebsiteCode/CSS/profilecard.css">
 </head>
+
 <body>
 
-    <!-- DOCK NAVIGATION -->
+    <!-- NAVIGATION -->
     <nav class="dock">
         <div class="logo">Axis</div>
+
         <div class="nav-links">
             <div class="nav-indicator"></div>
-            <a href="#home" class="nav-btn active" data-section="home">Home</a>
-            <a href="#releases" class="nav-btn" data-section="releases">Releases</a>
-            <a href="#about" class="nav-btn" data-section="about">About</a>
+
+            <a href="#home" class="nav-btn active">Home</a>
+            <a href="#releases" class="nav-btn">Releases</a>
+            <a href="#about" class="nav-btn">About</a>
         </div>
     </nav>
 
     <!-- GRADIENT OVERLAY -->
     <div class="gradient-overlay"></div>
 
-    <!-- ===== HOME SECTION ===== -->
+    <!-- HOME SECTION -->
     <main id="home" class="content">
 
-        <div class="text-content">
-            <h1 class="split-text" data-animation="chars">Welcome to Axis</h1>
-            <p class="split-text description" data-animation="words">
-                A place where you can find multiple free assets to make your Unity Game or Editor better !
-            </p>
-        </div>
+        <div class="hero-container">
 
-        <!-- PROFILE CARDS -->
-        <div class="profile-cards">
+            <!-- LEFT SIDE -->
+            <div class="hero-left">
 
-            <!-- CARD 1 -->
-            <div class="profile-card">
-                <div class="profile-card-main">
-                    <div class="profile-left">
-                        <div class="profile-avatar">
-                            <img src="WebsiteCode/Icons/P1pfp.png" alt="P1px">
-                        </div>
-                        <span class="profile-name">P1px</span>
-                    </div>
-                    <button class="profile-expand-btn" aria-label="Expand">
-                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                </div>
-                <div class="profile-card-expanded">
-                    <p class="profile-desc">
-                        Hey, my name is P1px! P1 for short. I am a British / Polish 15 year old C# scripter.
-                        I've been coding since 2023/24 and have experience in Game Dev and Unity Editor!
-                    </p>
-                </div>
+                <h1 class="split-text" data-animation="chars">
+                    Axis
+                </h1>
+
+                <p class="description split-text" data-animation="words">
+                    A place where you can find multiple free assets to make your
+                    Unity game or editor better.
+                </p>
+
             </div>
 
-            <!-- CARD 2 -->
-            <div class="profile-card">
-                <div class="profile-card-main">
-                    <div class="profile-left">
-                        <div class="profile-avatar">
-                            <img src="WebsiteCode/Icons/GolonkaPFP.png" alt="Golonka">
+
+            <!-- RIGHT SIDE -->
+            <div class="hero-right">
+
+                <h2>About Us</h2>
+
+                <div class="profile-cards">
+
+                    <!-- CARD 1 -->
+                    <div class="profile-card">
+
+                        <div class="profile-card-main">
+
+                            <div class="profile-left">
+
+                                <div class="profile-avatar">
+                                    <img src="WebsiteCode/Icons/P1pfp.png" alt="P1px">
+                                </div>
+
+                                <span class="profile-name">P1px</span>
+
+                            </div>
+
+                            <button class="profile-expand-btn">
+
+                                <svg class="arrow-icon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2">
+
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+
+                                </svg>
+
+                            </button>
+
                         </div>
-                        <span class="profile-name">Golonka</span>
+
+                        <div class="profile-card-expanded">
+
+                            <p class="profile-desc">
+                                Hey, my name is P1px! P1 for short.
+                                I am a British / Polish 15 year old C# scripter.
+                                I've been coding since 2023/24 and have experience
+                                in Game Dev and Unity Editor.
+                            </p>
+
+                        </div>
+
                     </div>
-                    <button class="profile-expand-btn" aria-label="Expand">
-                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
+
+
+
+                    <!-- CARD 2 -->
+                    <div class="profile-card">
+
+                        <div class="profile-card-main">
+
+                            <div class="profile-left">
+
+                                <div class="profile-avatar">
+                                    <img src="WebsiteCode/Icons/GolonkaPFP.png" alt="Golonka">
+                                </div>
+
+                                <span class="profile-name">Golonka</span>
+
+                            </div>
+
+                            <button class="profile-expand-btn">
+
+                                <svg class="arrow-icon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2">
+
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+                        <div class="profile-card-expanded">
+
+                            <p class="profile-desc">
+                                Hello! I am Golonka, I'm a Polish 18 year old
+                                programmer, developer, designer, network and
+                                website creator. I have years of experience
+                                in multiple languages and game development.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="profile-card-expanded">
-                    <p class="profile-desc">
-                        Hello! I am Golonka, I'm a Polish 18 yo programmer, developer, designer, network and website creator, 
-                        PC builder and much more! I've been coding in multiple languages for years and I have a lot of 
-                        experience in Game Dev and everything about PC's and IT. I like to code scripts, build and repair computers, 
-                        use different operating systems and create networks and websites! I would love to help u all create projects 
-                        in unity u always wanted to create and I am all here to help! I also own a game studio Golonka Games™. 
-                        Reach out to me via socials below, I am always open to chat and help!
-                    </p>
-                </div>
+
             </div>
 
         </div>
+
     </main>
 
-    <!-- ===== RELEASES SECTION ===== -->
+
+    <!-- RELEASES -->
     <section id="releases" class="scroll-section">
-        <h2 class="split-text" data-animation="chars">Releases</h2>
+
+        <h2 class="split-text" data-animation="chars">
+            Releases
+        </h2>
+
     </section>
-    
-    <!-- ===== ABOUT SECTION ===== -->
+
+
+    <!-- ABOUT -->
     <section id="about" class="scroll-section">
-        <h2 class="split-text" data-animation="chars">About</h2>
+
+        <h2 class="split-text" data-animation="chars">
+            About
+        </h2>
+
     </section>
+
 
     <!-- JS LIBRARIES -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -114,4 +189,5 @@
     <script src="WebsiteCode/JS/profilecard.js"></script>
 
 </body>
+
 </html>
