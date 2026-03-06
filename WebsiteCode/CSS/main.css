@@ -1,6 +1,6 @@
 /* ================================
-   BASE STYLES & RESET
-   ================================ */
+   GLOBAL
+================================ */
 
 * {
     margin: 0;
@@ -8,355 +8,136 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background-color: #0a0a0a;
-    min-height: 200vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
+    font-family: "Inter", sans-serif;
+    background: #0b0b0b;
     color: white;
 }
 
 /* ================================
-   BACKGROUND
-   ================================ */
+   LAYOUT
+================================ */
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(circle at 20% 50%, rgba(40,40,60,0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(40,40,60,0.2) 0%, transparent 50%);
-    z-index: -1;
-}
-
-/* ================================
-   GRADIENT OVERLAY
-   ================================ */
-
-.gradient-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 50;
-    background:
-        linear-gradient(
-            to top,
-            rgba(10,10,10,1) 0%,
-            rgba(10,10,10,0.95) 10%,
-            rgba(10,10,10,0.8) 20%,
-            rgba(10,10,10,0.6) 30%,
-            rgba(10,10,10,0.4) 40%,
-            rgba(10,10,10,0.2) 50%,
-            transparent 70%
-        ),
-        linear-gradient(
-            to bottom,
-            rgba(10,10,10,0.4) 0%,
-            rgba(10,10,10,0.2) 10%,
-            rgba(10,10,10,0.1) 20%,
-            transparent 30%
-        ),
-        linear-gradient(
-            to left,
-            rgba(10,10,10,0.7) 0%,
-            rgba(10,10,10,0.5) 10%,
-            rgba(10,10,10,0.35) 20%,
-            rgba(10,10,10,0.2) 30%,
-            rgba(10,10,10,0.1) 40%,
-            transparent 60%
-        );
-}
-
-/* ================================
-   MAIN CONTENT
-   ================================ */
-
-.content {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding-top: 120px;
-    padding-bottom: 100px;
-}
-
-/* ================================
-   HERO LAYOUT
-   ================================ */
-
-.hero-container {
+.container {
     width: 100%;
     max-width: 1400px;
+    margin: auto;
+    padding: 80px 60px;
+}
 
+/* ================================
+   TOP SECTION
+================================ */
+
+.top-section {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
-    gap: 120px;
-    padding: 0 80px;
 }
 
-/* ================================
-   HERO LEFT (Axis)
-   ================================ */
+/* LEFT SIDE (AXIS) */
 
-.hero-left {
-    max-width: 600px;
+.axis-section {
+    max-width: 500px;
 }
 
-.hero-left h1 {
-    font-size: 7rem;
-    font-weight: 700;
-
-    margin-bottom: 25px;
-
-    letter-spacing: -3px;
-
-    background: linear-gradient(135deg,#ffffff,#9e9e9e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.axis-title {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: -2px;
 }
 
-.hero-left p {
-    font-size: 1.5rem;
+.axis-desc {
+    margin-top: 20px;
+    font-size: 18px;
     line-height: 1.6;
-
-    color: rgba(255,255,255,0.65);
-}
-
-/* ================================
-   HERO RIGHT (About + Cards)
-   ================================ */
-
-.hero-right {
-    width: 650px;
-}
-
-.hero-right h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-}
-
-/* Fix profile cards positioning */
-.profile-cards {
-    position: relative;
-    right: auto;
-    top: auto;
-
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    align-items: stretch;
-}
-
-/* ================================
-   SPLIT TEXT ANIMATION SUPPORT
-   ================================ */
-
-.split-text {
-    overflow: visible;
-}
-
-.char {
-    display: inline-block;
-    will-change: transform, opacity;
-}
-
-.word {
-    display: inline-block;
-    margin-right: 0.25em;
-}
-
-.word:last-child {
-    margin-right: 0;
-}
-
-/* ================================
-   SCROLL SECTIONS
-   ================================ */
-
-.scroll-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: #0a0a0a;
-    z-index: 60;
-
-    padding-top: 100px;
-}
-
-.scroll-section::before {
-    content: '';
-    position: absolute;
-
-    top: -300px;
-    left: 0;
-
-    width: 100%;
-    height: 350px;
-
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(10,10,10,0.05) 20%,
-        rgba(10,10,10,0.2) 40%,
-        rgba(10,10,10,0.5) 60%,
-        rgba(10,10,10,0.85) 80%,
-        #0a0a0a 100%
-    );
-
-    pointer-events: none;
-}
-
-.scroll-section h2 {
-    font-size: 4rem;
-    font-weight: 700;
-}
-
-/* ================================
-   ABOUT SECTION
-   ================================ */
-
-.about-section {
-    padding: 100px 20px;
-
-    display: flex;
-    justify-content: center;
-}
-
-.about-container {
-    max-width: 1200px;
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.about-container h2 {
-    font-size: 4rem;
-    margin-bottom: 60px;
-}
-
-/* ================================
-   CARD GRID (future use)
-   ================================ */
-
-.cards-container {
-    display: flex;
-    gap: 40px;
-    width: 100%;
-}
-
-.card {
-    flex: 1;
-
-    padding: 40px;
-
-    border-radius: 24px;
-
-    background: rgba(255,255,255,0.05);
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    box-shadow:
-        0 8px 32px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-
-    box-shadow:
-        0 20px 40px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.15);
-}
-
-.card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-
-    background: linear-gradient(135deg,#ffffff,#a0a0a0);
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.card p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-
     color: rgba(255,255,255,0.7);
 }
 
-/* ================================
-   RESPONSIVE
-   ================================ */
+/* RIGHT SIDE (ABOUT US) */
 
-@media (max-width: 900px) {
-
-    .hero-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        gap: 60px;
-
-        padding: 0 30px;
-    }
-
-    .hero-left h1 {
-        font-size: 4rem;
-    }
-
-    .hero-left p {
-        font-size: 1.3rem;
-    }
-
-    .hero-right {
-        width: 100%;
-    }
-
-    .scroll-section h2 {
-        font-size: 2.5rem;
-    }
-
+.about-section {
+    text-align: right;
 }
 
-@media (max-width: 500px) {
+.about-title {
+    font-size: 48px;
+    font-weight: 800;
+}
 
-    .hero-left h1 {
-        font-size: 3rem;
-    }
+/* ================================
+   PROFILE CARDS
+================================ */
 
-    .hero-left p {
-        font-size: 1.1rem;
-    }
+.cards {
+    margin-top: 60px;
+    display: flex;
+    gap: 40px;
+}
 
+/* CARD */
+
+.profile-card {
+    width: 360px;
+    background: #141414;
+    border-radius: 16px;
+    padding: 30px;
+    transition: transform 0.25s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-6px);
+}
+
+/* PROFILE IMAGE */
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #333;
+    margin-bottom: 20px;
+}
+
+/* NAME */
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ROLE */
+
+.profile-role {
+    font-size: 14px;
+    margin-top: 4px;
+    color: rgba(255,255,255,0.6);
+}
+
+/* DESCRIPTION */
+
+.profile-desc {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+}
+
+/* SOCIALS */
+
+.profile-socials {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.profile-socials a {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.profile-socials a:hover {
+    opacity: 1;
 }
