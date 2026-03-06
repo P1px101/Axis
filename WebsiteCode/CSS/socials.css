@@ -1,0 +1,162 @@
+/* ================================
+   SOCIAL BUTTONS
+   ================================ */
+
+.social-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+/* ==================== BASE BUTTON ==================== */
+.social-btn {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.social-btn svg {
+    color: rgba(255, 255, 255, 0.7);
+    width: 18px;
+    height: 18px;
+    z-index: 2;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* ==================== HOVER FILL EFFECT ==================== */
+.social-btn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    z-index: 1;
+}
+
+.social-btn:hover {
+    border-color: transparent;
+    transform: scale(1.1);
+}
+
+.social-btn:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.social-btn:hover svg {
+    color: white;
+    transform: scale(1.1);
+}
+
+.social-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==================== YOUTUBE ==================== */
+.social-btn.youtube::before {
+    background: #FF0000;
+}
+
+.social-btn.youtube:hover {
+    border-color: #FF0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+/* ==================== DISCORD SERVER ==================== */
+.social-btn.discord-server::before {
+    background: #5865F2;
+}
+
+.social-btn.discord-server:hover {
+    border-color: #5865F2;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+}
+
+/* ==================== DISCORD USER ==================== */
+.social-btn.discord-user::before {
+    background: linear-gradient(135deg, #5865F2, #EB459E);
+}
+
+.social-btn.discord-user:hover {
+    border-color: #5865F2;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+}
+
+/* ==================== GITHUB ==================== */
+.social-btn.github::before {
+    background: #ffffff;
+}
+
+.social-btn.github:hover {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.social-btn.github:hover svg {
+    color: #0a0a0a;
+}
+
+/* ==================== TOOLTIP (Optional) ==================== */
+.social-btn {
+    position: relative;
+}
+
+.social-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 600px) {
+    .social-buttons {
+        gap: 8px;
+        margin-right: 10px;
+    }
+    
+    .social-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .social-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
