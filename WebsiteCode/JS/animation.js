@@ -1,81 +1,143 @@
 /* ================================
-   AXIS TEXT ANIMATION
+   ANIMATION.JS - Split Text Animations
+   Animates everything EXCEPT the dock
 ================================ */
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ================================
-   SPLIT TEXT
-================================ */
+// Split text into characters or words
+function splitTextIntoElements(element, type = "chars") {
 
-function splitText(element) {
-
-    const text = element.textContent;
+    const text = element.textContent.trim();
     element.innerHTML = "";
 
-    const chars = [];
+    if (type === "chars") {
 
-    for (let i = 0; i < text.length; i++) {
+        for (let i = 0; i < text.length; i++) {
 
-        const span = document.createElement("span");
-        span.classList.add("char");
+            const char = text[i];
+            const span = document.createElement("span");
+            span.className = "char";
 
-        if (text[i] === " ") {
-            span.innerHTML = "&nbsp;";
-        } else {
-            span.textContent = text[i];
+            if (char === " ") {
+                span.innerHTML = "&nbsp;";
+            } else {
+                span.textContent = char;
+            }
+
+            element.appendChild(span);
         }
 
-        element.appendChild(span);
-        chars.push(span);
-    }
+        return element.querySelectorAll(".char");
 
-    return chars;
+    } else if (type === "words") {
+
+        const words = text.split(/\s+/);
+
+        words.forEach((word) => {
+
+            const span = document.createElement("span");
+            span.className = "word";
+            span.textContent = word;
+
+            element.appendChild(span);
+
+        });
+
+        return element.querySelectorAll(".word");
+    }
 }
 
-/* ================================
-   INIT ANIMATIONS
-================================ */
 
-function initAnimations() {
+// Initialize split text animations
+function initSplitTextAnimations() {
 
-    const elements = document.querySelectorAll(".split-text");
+    const splitElements = document.querySelectorAll(".split-text");
 
-    elements.forEach((element) => {
+    splitElements.forEach((element, index) => {
 
-        /* Skip dock elements */
-        if (element.closest(".dock")) return;
+        /* --------------------------------
+           SKIP DOCK ELEMENTS
+        -------------------------------- */
 
-        const chars = splitText(element);
+        if (element.closest(".dock")) {
+            return;
+        }
 
-        gsap.set(chars, {
+        const animationType = element.dataset.animation || "chars";
+
+        const targets = splitTextIntoElements(element, animationType);
+
+        if (!targets || targets.length === 0) {
+            return;
+        }
+
+        /* --------------------------------
+           INITIAL STATE
+        -------------------------------- */
+
+        gsap.set(targets, {
             opacity: 0,
             y: 60,
-            rotateX: -60,
-            transformPerspective: 800
+            rotateX: -50,
+            transformPerspective: 600,
+            transformOrigin: "center bottom"
         });
 
-        gsap.to(chars, {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 1.2,
-            ease: "expo.out",
-            stagger: 0.04,
+        /* --------------------------------
+           CHECK IF ELEMENT IS ALREADY
+           IN VIEWPORT
+        -------------------------------- */
 
-            scrollTrigger: {
-                trigger: element,
-                start: "top 85%",
-                once: true
-            }
-        });
+        const rect = element.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+
+        if (isInView) {
+
+            gsap.to(targets, {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 1.4,
+                ease: "expo.out",
+                stagger: 0.05,
+                delay: 0.4 + (index * 0.3),
+                overwrite: "auto"
+            });
+
+        } else {
+
+            gsap.to(targets, {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 1.4,
+                ease: "expo.out",
+                stagger: 0.05,
+
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                    once: true
+                }
+            });
+
+        }
 
     });
 
 }
 
-/* ================================
-   START
-================================ */
 
-document.addEventListener("DOMContentLoaded", initAnimations);
+// Initialize when DOM ready
+if (document.readyState === "loading") {
+
+    document.addEventListener("DOMContentLoaded", () => {
+        requestAnimationFrame(initSplitTextAnimations);
+    });
+
+} else {
+
+    requestAnimationFrame(initSplitTextAnimations);
+
+}
