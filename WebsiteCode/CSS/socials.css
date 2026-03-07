@@ -8,6 +8,9 @@
     gap: 10px;
     margin-left: auto;
     margin-right: 15px;
+    overflow: visible;
+    position: relative;
+    z-index: 100;
 }
 
 /* ==================== BASE BUTTON ==================== */
@@ -24,7 +27,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    overflow: hidden;
+    overflow: visible;
     text-decoration: none;
 }
 
@@ -80,6 +83,10 @@
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
 }
 
+.social-btn.youtube::after {
+    background: #FF0000;
+}
+
 /* ==================== DISCORD SERVER ==================== */
 .social-btn.discord-server::before {
     background: #5865F2;
@@ -90,6 +97,10 @@
     box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
 }
 
+.social-btn.discord-server::after {
+    background: #5865F2;
+}
+
 /* ==================== DISCORD USER ==================== */
 .social-btn.discord-user::before {
     background: #5865F2;
@@ -98,6 +109,10 @@
 .social-btn.discord-user:hover {
     border-color: #5865F2;
     box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+}
+
+.social-btn.discord-user::after {
+    background: #5865F2;
 }
 
 /* ==================== GITHUB ==================== */
@@ -114,31 +129,71 @@
     color: #0a0a0a;
 }
 
+.social-btn.github::after {
+    background: #333333;
+}
+
 /* ==================== TOOLTIP ==================== */
 .social-btn::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: calc(100% + 8px);
+    bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%) translateY(5px);
-    background: rgba(0, 0, 0, 0.9);
     color: white;
-    padding: 6px 10px;
+    padding: 6px 12px;
     border-radius: 6px;
     font-size: 0.75rem;
+    font-weight: 500;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 10;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Tooltip Arrow */
+.social-btn .tooltip-arrow {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    z-index: 9999;
 }
 
 .social-btn:hover::after {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
+}
+
+.social-btn:hover .tooltip-arrow {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Tooltip colors matching brand */
+.social-btn.youtube .tooltip-arrow {
+    border-top-color: #FF0000;
+}
+
+.social-btn.discord-server .tooltip-arrow,
+.social-btn.discord-user .tooltip-arrow {
+    border-top-color: #5865F2;
+}
+
+.social-btn.github .tooltip-arrow {
+    border-top-color: #333333;
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -156,5 +211,10 @@
     .social-btn svg {
         width: 16px;
         height: 16px;
+    }
+    
+    .social-btn::after {
+        font-size: 0.65rem;
+        padding: 4px 8px;
     }
 }
